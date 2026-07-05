@@ -1,0 +1,111 @@
+{
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "sans": {
+        "$value": [
+          "Adobe Clean Spectrum VF",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "serif": {
+        "$value": [
+          "Adobe Clean Serif",
+          "serif"
+        ]
+      },
+      "code": {
+        "$value": [
+          "Source Code Pro",
+          "monospace"
+        ]
+      },
+      "cjk": {
+        "$value": [
+          "Adobe Clean Han",
+          "PingFang SC",
+          "sans-serif"
+        ]
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "light": {
+        "$value": 300
+      },
+      "regular": {
+        "$value": 400
+      },
+      "medium": {
+        "$value": 500
+      },
+      "bold": {
+        "$value": 700
+      },
+      "extra-bold": {
+        "$value": 800
+      },
+      "black": {
+        "$value": 900
+      }
+    },
+    "size": {
+      "25": {
+        "$value": "10px"
+      },
+      "50": {
+        "$value": "11px"
+      },
+      "75": {
+        "$value": "12px"
+      },
+      "100": {
+        "$value": "14px"
+      },
+      "200": {
+        "$value": "16px"
+      },
+      "300": {
+        "$value": "18px"
+      },
+      "400": {
+        "$value": "20px"
+      },
+      "500": {
+        "$value": "22px"
+      },
+      "600": {
+        "$value": "25px"
+      },
+      "700": {
+        "$value": "28px"
+      },
+      "800": {
+        "$value": "32px"
+      },
+      "900": {
+        "$value": "36px"
+      },
+      "1000": {
+        "$value": "40px"
+      },
+      "1100": {
+        "$value": "45px"
+      },
+      "1200": {
+        "$value": "51px"
+      },
+      "1300": {
+        "$value": "58px"
+      },
+      "1400": {
+        "$value": "65px"
+      },
+      "1500": {
+        "$value": "73px"
+      },
+      "$type": "dimension"
+    }
+  }
+}

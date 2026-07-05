@@ -1,0 +1,17 @@
+{
+  "name": "llp-design-infra",
+  "private": true,
+  "version": "0.0.0",
+  "description": "LLP design infrastructure monorepo — token pipeline, Figma sync, design-system MCP server",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

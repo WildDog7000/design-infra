@@ -1,0 +1,137 @@
+{
+  "color": {
+    "$type": "color",
+    "bg": {
+      "base": {
+        "$value": "{color.gray.25}",
+        "$description": "spectrum: background-base-color"
+      },
+      "elevated": {
+        "$value": "{color.gray.75}",
+        "$description": "spectrum: background-elevated-color"
+      },
+      "layer_1": {
+        "$value": "{color.gray.50}",
+        "$description": "spectrum: background-layer-1-color"
+      },
+      "layer_2": {
+        "$value": "{color.gray.75}",
+        "$description": "spectrum: background-layer-2-color"
+      },
+      "pasteboard": {
+        "$value": "{color.gray.25}",
+        "$description": "spectrum: background-pasteboard-color"
+      }
+    },
+    "accent": {
+      "bg": {
+        "default": {
+          "$value": "{color.accent.800}",
+          "$description": "spectrum: accent-background-color-default"
+        },
+        "hover": {
+          "$value": "{color.accent.700}",
+          "$description": "spectrum: accent-background-color-hover"
+        },
+        "down": {
+          "$value": "{color.accent.700}",
+          "$description": "spectrum: accent-background-color-down"
+        }
+      },
+      "content": {
+        "default": {
+          "$value": "{color.accent.900}",
+          "$description": "spectrum: accent-content-color-default"
+        },
+        "hover": {
+          "$value": "{color.accent.1000}",
+          "$description": "spectrum: accent-content-color-hover"
+        }
+      }
+    },
+    "neutral": {
+      "bg": {
+        "default": {
+          "$value": "{color.gray.800}",
+          "$description": "spectrum: neutral-background-color-default"
+        }
+      },
+      "content": {
+        "default": {
+          "$value": "{color.gray.800}",
+          "$description": "spectrum: neutral-content-color-default"
+        }
+      },
+      "subdued_content": {
+        "default": {
+          "$value": "{color.gray.700}",
+          "$description": "spectrum: neutral-subdued-content-color-default"
+        }
+      }
+    },
+    "negative": {
+      "bg": {
+        "default": {
+          "$value": "{color.negative.800}",
+          "$description": "spectrum: negative-background-color-default"
+        }
+      },
+      "content": {
+        "default": {
+          "$value": "{color.negative.900}",
+          "$description": "spectrum: negative-content-color-default"
+        }
+      }
+    },
+    "positive": {
+      "bg": {
+        "default": {
+          "$value": "{color.positive.800}",
+          "$description": "spectrum: positive-background-color-default"
+        }
+      },
+      "visual": {
+        "$value": "{color.positive.900}",
+        "$description": "spectrum: positive-visual-color"
+      }
+    },
+    "notice": {
+      "bg": {
+        "default": {
+          "$value": "{color.notice.900}",
+          "$description": "spectrum: notice-background-color-default"
+        }
+      },
+      "visual": {
+        "$value": "{color.notice.900}",
+        "$description": "spectrum: notice-visual-color"
+      }
+    },
+    "informative": {
+      "bg": {
+        "default": {
+          "$value": "{color.informative.800}",
+          "$description": "spectrum: informative-background-color-default"
+        }
+      },
+      "visual": {
+        "$value": "{color.informative.900}",
+        "$description": "spectrum: informative-visual-color"
+      }
+    },
+    "disabled": {
+      "bg": {
+        "$value": "{color.gray.100}",
+        "$description": "spectrum: disabled-background-color"
+      },
+      "content": {
+        "$value": "{color.gray.400}",
+        "$description": "spectrum: disabled-content-color"
+      },
+      "border": {
+        "$value": "{color.gray.300}",
+        "$description": "spectrum: disabled-border-color"
+      }
+    }
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "color": {
+    "$type": "color",
+    "accent": {
+      "100": {
+        "$value": "{color.blue.100}"
+      },
+      "200": {
+        "$value": "{color.blue.200}"
+      },
+      "300": {
+        "$value": "{color.blue.300}"
+      },
+      "400": {
+        "$value": "{color.blue.400}"
+      },
+      "500": {
+        "$value": "{color.blue.500}"
+      },
+      "600": {
+        "$value": "{color.blue.600}"
+      },
+      "700": {
+        "$value": "{color.blue.700}"
+      },
+      "800": {
+        "$value": "{color.blue.800}"
+      },
+      "900": {
+        "$value": "{color.blue.900}"
+      },
+      "1000": {
+        "$value": "{color.blue.1000}"
+      },
+      "1100": {
+        "$value": "{color.blue.1100}"
+      },
+      "1200": {
+        "$value": "{color.blue.1200}"
+      },
+      "1300": {
+        "$value": "{color.blue.1300}"
+      },
+      "1400": {
+        "$value": "{color.blue.1400}"
+      },
+      "1500": {
+        "$value": "{color.blue.1500}"
+      },
+      "1600": {
+        "$value": "{color.blue.1600}"
+      }
+    },
+    "informative": {
+      "100": {
+        "$value": "{color.blue.100}"
+      },
+      "200": {
+        "$value": "{color.blue.200}"
+      },
+      "300": {
+        "$value": "{color.blue.300}"
+      },
+      "400": {
+        "$value": "{color.blue.400}"
+      },
+      "500": {
+        "$value": "{color.blue.500}"
+      },
+      "600": {
+        "$value": "{color.blue.600}"
+      },
+      "700": {
+        "$value": "{color.blue.700}"
+      },
+      "800": {
+        "$value": "{color.blue.800}"
+      },
+      "900": {
+        "$value": "{color.blue.900}"
+      },
+      "1000": {
+        "$value": "{color.blue.1000}"
+      },
+      "1100": {
+        "$value": "{color.blue.1100}"
+      },
+      "1200": {
+        "$value": "{color.blue.1200}"
+      },
+      "1300": {
+        "$value": "{color.blue.1300}"
+      },
+      "1400": {
+        "$value": "{color.blue.1400}"
+      },
+      "1500": {
+        "$value": "{color.blue.1500}"
+      },
+      "1600": {
+        "$value": "{color.blue.1600}"
+      }
+    },
+    "negative": {
+      "100": {
+        "$value": "{color.red.100}"
+      },
+      "200": {
+        "$value": "{color.red.200}"
+      },
+      "300": {
+        "$value": "{color.red.300}"
+      },
+      "400": {
+        "$value": "{color.red.400}"
+      },
+      "500": {
+        "$value": "{color.red.500}"
+      },
+      "600": {
+        "$value": "{color.red.600}"
+      },
+      "700": {
+        "$value": "{color.red.700}"
+      },
+      "800": {
+        "$value": "{color.red.800}"
+      },
+      "900": {
+        "$value": "{color.red.900}"
+      },
+      "1000": {
+        "$value": "{color.red.1000}"
+      },
+      "1100": {
+        "$value": "{color.red.1100}"
+      },
+      "1200": {
+        "$value": "{color.red.1200}"
+      },
+      "1300": {
+        "$value": "{color.red.1300}"
+      },
+      "1400": {
+        "$value": "{color.red.1400}"
+      },
+      "1500": {
+        "$value": "{color.red.1500}"
+      },
+      "1600": {
+        "$value": "{color.red.1600}"
+      }
+    },
+    "notice": {
+      "100": {
+        "$value": "{color.orange.100}"
+      },
+      "200": {
+        "$value": "{color.orange.200}"
+      },
+      "300": {
+        "$value": "{color.orange.300}"
+      },
+      "400": {
+        "$value": "{color.orange.400}"
+      },
+      "500": {
+        "$value": "{color.orange.500}"
+      },
+      "600": {
+        "$value": "{color.orange.600}"
+      },
+      "700": {
+        "$value": "{color.orange.700}"
+      },
+      "800": {
+        "$value": "{color.orange.800}"
+      },
+      "900": {
+        "$value": "{color.orange.900}"
+      },
+      "1000": {
+        "$value": "{color.orange.1000}"
+      },
+      "1100": {
+        "$value": "{color.orange.1100}"
+      },
+      "1200": {
+        "$value": "{color.orange.1200}"
+      },
+      "1300": {
+        "$value": "{color.orange.1300}"
+      },
+      "1400": {
+        "$value": "{color.orange.1400}"
+      },
+      "1500": {
+        "$value": "{color.orange.1500}"
+      },
+      "1600": {
+        "$value": "{color.orange.1600}"
+      }
+    },
+    "positive": {
+      "100": {
+        "$value": "{color.green.100}"
+      },
+      "200": {
+        "$value": "{color.green.200}"
+      },
+      "300": {
+        "$value": "{color.green.300}"
+      },
+      "400": {
+        "$value": "{color.green.400}"
+      },
+      "500": {
+        "$value": "{color.green.500}"
+      },
+      "600": {
+        "$value": "{color.green.600}"
+      },
+      "700": {
+        "$value": "{color.green.700}"
+      },
+      "800": {
+        "$value": "{color.green.800}"
+      },
+      "900": {
+        "$value": "{color.green.900}"
+      },
+      "1000": {
+        "$value": "{color.green.1000}"
+      },
+      "1100": {
+        "$value": "{color.green.1100}"
+      },
+      "1200": {
+        "$value": "{color.green.1200}"
+      },
+      "1300": {
+        "$value": "{color.green.1300}"
+      },
+      "1400": {
+        "$value": "{color.green.1400}"
+      },
+      "1500": {
+        "$value": "{color.green.1500}"
+      },
+      "1600": {
+        "$value": "{color.green.1600}"
+      }
+    }
+  }
+}

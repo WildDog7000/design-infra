@@ -1,0 +1,24 @@
+{
+  "name": "@llp/tokens",
+  "version": "0.1.0",
+  "description": "LLP design tokens — W3C DTCG source of truth, built with Style Dictionary",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/ts/tokens.js",
+    "./css": "./dist/css/tokens.css",
+    "./css/dark": "./dist/css/tokens.dark.css",
+    "./json": "./dist/json/tokens.flat.json"
+  },
+  "scripts": {
+    "import:spectrum": "node scripts/import-spectrum.mjs",
+    "build": "node build.js",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@adobe/spectrum-tokens": "^14.13.2",
+    "style-dictionary": "^5.5.0"
+  }
+}
