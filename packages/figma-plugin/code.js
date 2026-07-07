@@ -70,88 +70,106 @@ function refToName(value) {
   return value.slice(1, -1).split('.').join('/');
 }
 
-async function getCollection() {
+async function getCollectionByName(name) {
   var collections = await figma.variables.getLocalVariableCollectionsAsync();
   for (var i = 0; i < collections.length; i++) {
-    if (collections[i].name === COLLECTION_NAME) return collections[i];
+    if (collections[i].name === name) return collections[i];
   }
-  return figma.variables.createVariableCollection(COLLECTION_NAME);
+  return figma.variables.createVariableCollection(name);
 }
 
-async function sync(files) {
-  var collection = await getCollection();
-
-  // mode 0 → Light, ensure a second mode → Dark
-  collection.renameMode(collection.modes[0].modeId, 'Light');
-  var darkModeId = null;
-  for (var i = 0; i < collection.modes.length; i++) {
-    if (collection.modes[i].name === 'Dark') darkModeId = collection.modes[i].modeId;
-  }
-  if (!darkModeId) darkModeId = collection.addMode('Dark');
-  var lightModeId = collection.modes[0].modeId;
-
-  // index existing variables by name so re-runs update instead of duplicate
+// A "target" is one theme's destination: a collection + mode to write into,
+// plus a name index so re-runs update variables instead of duplicating them.
+async function makeTarget(collection, modeId) {
   var byName = {};
   for (var v = 0; v < collection.variableIds.length; v++) {
     var existing = await figma.variables.getVariableByIdAsync(collection.variableIds[v]);
     if (existing) byName[existing.name] = existing;
   }
+  return { collection: collection, modeId: modeId, byName: byName };
+}
 
-  function ensureVariable(name, resolvedType) {
-    if (byName[name]) return byName[name];
-    var created = figma.variables.createVariable(name, collection, resolvedType);
-    byName[name] = created;
-    return created;
+function setToken(target, token) {
+  var resolvedType = TYPE_MAP[token.type];
+  if (!resolvedType) return 0;
+  var variable = target.byName[token.name];
+  if (!variable) {
+    variable = figma.variables.createVariable(token.name, target.collection, resolvedType);
+    target.byName[token.name] = variable;
   }
-
-  function setToken(token, modeId) {
-    var resolvedType = TYPE_MAP[token.type];
-    if (!resolvedType) return 0;
-    var variable = ensureVariable(token.name, resolvedType);
-    if (typeof token.value === 'string' && token.value.charAt(0) === '{') {
-      var target = byName[refToName(token.value)];
-      if (!target) {
-        log('⚠ unresolved reference ' + token.value + ' for ' + token.name);
-        return 0;
-      }
-      variable.setValueForMode(modeId, figma.variables.createVariableAlias(target));
-    } else {
-      variable.setValueForMode(modeId, toFigmaValue(resolvedType, token.value));
+  if (typeof token.value === 'string' && token.value.charAt(0) === '{') {
+    var aliasTarget = target.byName[refToName(token.value)];
+    if (!aliasTarget) {
+      log('⚠ unresolved reference ' + token.value + ' for ' + token.name);
+      return 0;
     }
-    return 1;
+    variable.setValueForMode(target.modeId, figma.variables.createVariableAlias(aliasTarget));
+  } else {
+    variable.setValueForMode(target.modeId, toFigmaValue(resolvedType, token.value));
+  }
+  return 1;
+}
+
+async function sync(files) {
+  var lightCollection = await getCollectionByName(COLLECTION_NAME);
+  try {
+    lightCollection.renameMode(lightCollection.modes[0].modeId, 'Light');
+  } catch (e) {
+    /* mode renaming is cosmetic; ignore plan restrictions */
+  }
+  var light = await makeTarget(lightCollection, lightCollection.modes[0].modeId);
+
+  // Preferred: Light/Dark as modes of one collection. Multi-mode is gated to
+  // paid Figma plans, so fall back to a second single-mode collection.
+  var dark;
+  var darkModeId = null;
+  for (var i = 0; i < lightCollection.modes.length; i++) {
+    if (lightCollection.modes[i].name === 'Dark') darkModeId = lightCollection.modes[i].modeId;
+  }
+  if (darkModeId === null) {
+    try {
+      darkModeId = lightCollection.addMode('Dark');
+    } catch (e) {
+      log('ℹ plan limits collections to 1 mode — using a separate Dark collection');
+    }
+  }
+  if (darkModeId !== null) {
+    dark = await makeTarget(lightCollection, darkModeId);
+  } else {
+    dark = await makeTarget(await getCollectionByName(COLLECTION_NAME + ' · Dark'), null);
+    dark.modeId = dark.collection.modes[0].modeId;
   }
 
   var count = 0;
 
-  // pass 1 — primitives: raw values, one tree per mode
-  var lightPrimitives = flatten(files['primitives/color.light.json'], [], null, [])
-    .concat(flatten(files['primitives/dimension.json'], [], null, []))
+  // pass 1 — primitives: raw values per theme; dimensions/typography don't
+  // vary by theme, so mirror them into the dark target too
+  var themeInvariant = flatten(files['primitives/dimension.json'], [], null, [])
     .concat(flatten(files['primitives/typography.json'], [], null, []));
-  var darkPrimitives = flatten(files['primitives/color.dark.json'], [], null, []);
+  var lightColors = flatten(files['primitives/color.light.json'], [], null, []);
+  var darkColors = flatten(files['primitives/color.dark.json'], [], null, []);
 
-  for (var a = 0; a < lightPrimitives.length; a++) {
-    count += setToken(lightPrimitives[a], lightModeId);
-    // dimensions/typography don't vary by theme: mirror light into dark
-    setToken(lightPrimitives[a], darkModeId);
+  for (var a = 0; a < lightColors.length; a++) count += setToken(light, lightColors[a]);
+  for (var b = 0; b < darkColors.length; b++) setToken(dark, darkColors[b]);
+  for (var t = 0; t < themeInvariant.length; t++) {
+    count += setToken(light, themeInvariant[t]);
+    setToken(dark, themeInvariant[t]);
   }
-  for (var b = 0; b < darkPrimitives.length; b++) {
-    setToken(darkPrimitives[b], darkModeId);
-  }
-  log('primitives done (' + lightPrimitives.length + ' variables)');
+  log('primitives done (' + (lightColors.length + themeInvariant.length) + ' variables)');
 
-  // pass 2 — semantic: theme-invariant aliases, same in both modes
+  // pass 2 — semantic: theme-invariant aliases, written into both targets
   var semantic = flatten(files['semantic/color.json'], [], null, []);
   for (var c = 0; c < semantic.length; c++) {
-    count += setToken(semantic[c], lightModeId);
-    setToken(semantic[c], darkModeId);
+    count += setToken(light, semantic[c]);
+    setToken(dark, semantic[c]);
   }
   log('semantic done (' + semantic.length + ' variables)');
 
-  // pass 3 — usage: may point at different targets per mode
+  // pass 3 — usage: may point at different targets per theme
   var usageLight = flatten(files['usage/color.light.json'], [], null, []);
   var usageDark = flatten(files['usage/color.dark.json'], [], null, []);
-  for (var d = 0; d < usageLight.length; d++) count += setToken(usageLight[d], lightModeId);
-  for (var e = 0; e < usageDark.length; e++) setToken(usageDark[e], darkModeId);
+  for (var d = 0; d < usageLight.length; d++) count += setToken(light, usageLight[d]);
+  for (var e = 0; e < usageDark.length; e++) setToken(dark, usageDark[e]);
   log('usage done (' + usageLight.length + ' variables)');
 
   return count;
