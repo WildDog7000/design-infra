@@ -1,0 +1,64 @@
+<style>
+  body { font: 12px/1.5 'Inter', system-ui, sans-serif; margin: 0; padding: 16px; color: #18181b; }
+  h2 { font-size: 13px; margin: 0 0 4px; }
+  p { margin: 0 0 12px; color: #71717a; }
+  label { display: block; font-weight: 600; margin-bottom: 4px; }
+  input { width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid #d4d4d8; border-radius: 6px; font: inherit; margin-bottom: 12px; }
+  button { width: 100%; padding: 8px; border: none; border-radius: 6px; background: #2563eb; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+  button:disabled { background: #a1a1aa; }
+  #log { margin-top: 12px; padding: 8px; background: #f4f4f5; border-radius: 6px; height: 200px; overflow-y: auto; white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 11px; }
+</style>
+
+<h2>LLP Token Sync</h2>
+<p>git(事实源)→ Figma Variables 的「发布」方向。从 GitHub 拉取 DTCG 契约并同步为变量。</p>
+
+<label for="base">契约文件基地址(raw.githubusercontent.com)</label>
+<input id="base" value="https://raw.githubusercontent.com/WildDog7000/design-infra/main/packages/tokens/tokens" />
+
+<button id="sync">Sync from GitHub</button>
+<div id="log">ready.</div>
+
+<script>
+  var FILES = [
+    'primitives/color.light.json',
+    'primitives/color.dark.json',
+    'primitives/dimension.json',
+    'primitives/typography.json',
+    'semantic/color.json',
+    'usage/color.light.json',
+    'usage/color.dark.json',
+  ];
+
+  var logEl = document.getElementById('log');
+  function log(msg) {
+    logEl.textContent += '\n' + msg;
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  onmessage = function (event) {
+    var msg = event.data.pluginMessage;
+    if (msg && msg.type === 'log') log(msg.msg);
+  };
+
+  document.getElementById('sync').onclick = async function () {
+    var button = this;
+    button.disabled = true;
+    var base = document.getElementById('base').value.replace(/\/$/, '');
+    try {
+      log('fetching ' + FILES.length + ' contract files…');
+      var files = {};
+      for (var i = 0; i < FILES.length; i++) {
+        var res = await fetch(base + '/' + FILES[i]);
+        if (!res.ok) throw new Error(res.status + ' on ' + FILES[i]);
+        files[FILES[i]] = await res.json();
+        log('  ✓ ' + FILES[i]);
+      }
+      log('creating variables…');
+      parent.postMessage({ pluginMessage: { type: 'sync', files: files } }, '*');
+    } catch (err) {
+      log('❌ ' + err.message);
+    } finally {
+      button.disabled = false;
+    }
+  };
+</script>

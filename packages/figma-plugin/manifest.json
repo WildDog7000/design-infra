@@ -1,0 +1,12 @@
+{
+  "name": "LLP Token Sync",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["https://raw.githubusercontent.com"],
+    "reasoning": "Fetches the design token contract (DTCG JSON) from the design-infra GitHub repository."
+  }
+}
