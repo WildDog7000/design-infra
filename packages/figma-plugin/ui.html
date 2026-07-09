@@ -95,6 +95,13 @@
 
   post({ type: 'get-pat' });
 
+  // persist on every edit, not just on Propose — closing the plugin after
+  // Check drift must not lose the token
+  patEl.onchange = function () {
+    post({ type: 'set-pat', value: patEl.value.trim() });
+    log('PAT saved to Figma clientStorage');
+  };
+
   document.getElementById('sync').onclick = async function () {
     var button = this;
     button.disabled = true;
