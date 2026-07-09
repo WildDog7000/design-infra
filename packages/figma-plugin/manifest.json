@@ -6,7 +6,7 @@
   "editorType": ["figma"],
   "documentAccess": "dynamic-page",
   "networkAccess": {
-    "allowedDomains": ["https://raw.githubusercontent.com"],
-    "reasoning": "Fetches the design token contract (DTCG JSON) from the design-infra GitHub repository."
+    "allowedDomains": ["https://raw.githubusercontent.com", "https://api.github.com"],
+    "reasoning": "Fetches the design token contract (DTCG JSON) from the design-infra GitHub repository, and opens token-change proposal pull requests via the GitHub REST API."
   }
 }

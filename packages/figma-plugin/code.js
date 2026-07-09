@@ -1,13 +1,17 @@
 /**
- * LLP Token Sync — the "publish" direction of the git ↔ Figma bridge.
+ * LLP Token Sync — the git ↔ Figma bridge.
  *
- * The UI fetches the DTCG contract files from the GitHub repo (git is the
- * single source of truth) and posts them here. This side owns all Figma
- * mutations: one Variable Collection ("LLP Tokens") with Light/Dark modes,
- * primitives as raw values, semantic/usage as variable aliases so the
- * reference chain stays visible inside Figma.
- *
+ * Publish direction: the UI fetches the DTCG contract files from the GitHub
+ * repo (git is the single source of truth) and posts them here. This side
+ * owns all Figma mutations: one Variable Collection ("LLP Tokens") with
+ * Light/Dark modes, primitives as raw values, semantic/usage as variable
+ * aliases so the reference chain stays visible inside Figma.
  * Sync is idempotent: existing variables are matched by name and updated.
+ *
+ * Proposal direction: `diff` walks the same contract, reads the current
+ * Figma variable values back, and reports every divergence. The UI turns
+ * selected divergences into a GitHub pull request — Figma never writes to
+ * git directly; designers propose, review + CI decide.
  */
 
 figma.showUI(__html__, { width: 400, height: 460 });
@@ -134,7 +138,9 @@ async function sync(files) {
     }
   }
   if (darkModeId !== null) {
-    dark = await makeTarget(lightCollection, darkModeId);
+    // same collection, different mode: share the name index, otherwise the
+    // two targets each create their own copy of every variable
+    dark = { collection: lightCollection, modeId: darkModeId, byName: light.byName };
   } else {
     dark = await makeTarget(await getCollectionByName(COLLECTION_NAME + ' · Dark'), null);
     dark.modeId = dark.collection.modes[0].modeId;
@@ -175,14 +181,184 @@ async function sync(files) {
   return count;
 }
 
+/* ---------- proposal direction: read back + diff ---------- */
+
+// Which target each contract file was published into. Theme-invariant files
+// (dimension/typography/semantic) are mirrored into dark on publish; we treat
+// the light copy as the one designers edit, so drift is detected there.
+var FILE_TARGETS = {
+  'primitives/color.light.json': 'light',
+  'primitives/color.dark.json': 'dark',
+  'primitives/dimension.json': 'light',
+  'primitives/typography.json': 'light',
+  'semantic/color.json': 'light',
+  'usage/color.light.json': 'light',
+  'usage/color.dark.json': 'dark',
+};
+
+function figmaColorToHex(c) {
+  function h(x) {
+    var s = Math.round(x * 255).toString(16);
+    return s.length === 1 ? '0' + s : s;
+  }
+  var hex = '#' + h(c.r) + h(c.g) + h(c.b);
+  if (typeof c.a === 'number' && c.a < 1) hex += h(c.a);
+  return hex;
+}
+
+function normalizeHex(hex) {
+  var s = String(hex).replace('#', '').toLowerCase();
+  if (s.length === 3) s = s[0] + s[0] + s[1] + s[1] + s[2] + s[2];
+  if (s.length === 8 && s.slice(6) === 'ff') s = s.slice(0, 6);
+  return '#' + s;
+}
+
+// Both sides of the comparison are reduced to one canonical string:
+// refs as '{a.b.c}', colors as lowercase hex, floats via String(parseFloat).
+function canonicalContractValue(token) {
+  if (typeof token.value === 'string' && token.value.charAt(0) === '{') return token.value;
+  var resolvedType = TYPE_MAP[token.type];
+  if (resolvedType === 'COLOR') return normalizeHex(token.value);
+  if (resolvedType === 'FLOAT') return String(parseFloat(token.value));
+  if (Array.isArray(token.value)) return token.value.join(', ');
+  return String(token.value);
+}
+
+async function canonicalFigmaValue(variable, modeId, tokenType) {
+  var value = variable.valuesByMode[modeId];
+  if (value === undefined) return undefined;
+  if (value && typeof value === 'object' && value.type === 'VARIABLE_ALIAS') {
+    var aliased = await figma.variables.getVariableByIdAsync(value.id);
+    if (!aliased) return undefined;
+    return '{' + aliased.name.split('/').join('.') + '}';
+  }
+  var resolvedType = TYPE_MAP[tokenType];
+  if (resolvedType === 'COLOR') return normalizeHex(figmaColorToHex(value));
+  return String(value);
+}
+
+// Canonical figma value → contract form, preserving the shape of the value
+// it replaces: unit suffix for dimensions ('16px'), number vs string, array
+// for fontFamily lists.
+function proposedValue(canonical, oldRaw, resolvedType) {
+  if (canonical.charAt(0) === '{') return canonical;
+  if (resolvedType === 'FLOAT') {
+    if (typeof oldRaw === 'number') return parseFloat(canonical);
+    var suffix = String(oldRaw).replace(/^-?[0-9.]+/, '');
+    return canonical + suffix;
+  }
+  if (Array.isArray(oldRaw)) return canonical.split(/,\s*/);
+  return canonical;
+}
+
+async function findCollectionByName(name) {
+  var collections = await figma.variables.getLocalVariableCollectionsAsync();
+  for (var i = 0; i < collections.length; i++) {
+    if (collections[i].name === name) return collections[i];
+  }
+  return null;
+}
+
+// Read-only counterpart of the target setup in sync(): never creates
+// collections or modes, so Verify can run safely on any file.
+async function getReadTargets() {
+  var lightCollection = await findCollectionByName(COLLECTION_NAME);
+  if (!lightCollection) return null;
+  var light = await makeTarget(lightCollection, lightCollection.modes[0].modeId);
+  var dark = null;
+  for (var i = 0; i < lightCollection.modes.length; i++) {
+    if (lightCollection.modes[i].name === 'Dark') {
+      dark = { collection: lightCollection, modeId: lightCollection.modes[i].modeId, byName: light.byName };
+    }
+  }
+  if (!dark) {
+    var darkCollection = await findCollectionByName(COLLECTION_NAME + ' · Dark');
+    if (darkCollection) dark = await makeTarget(darkCollection, darkCollection.modes[0].modeId);
+  }
+  return { light: light, dark: dark };
+}
+
+async function diff(files) {
+  var targets = await getReadTargets();
+  if (!targets) {
+    throw new Error('collection "' + COLLECTION_NAME + '" not found — run Sync first');
+  }
+  var changes = [];
+  var missing = [];
+  var seen = {};
+  var checked = 0;
+
+  for (var file in FILE_TARGETS) {
+    var target = FILE_TARGETS[file] === 'dark' ? targets.dark : targets.light;
+    if (!target) {
+      log('⚠ no dark target found — skipping ' + file);
+      continue;
+    }
+    var tokens = flatten(files[file], [], null, []);
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+      var resolvedType = TYPE_MAP[token.type];
+      if (!resolvedType) continue;
+      seen[token.name] = true;
+      var variable = target.byName[token.name];
+      if (!variable) {
+        missing.push(token.name + ' (' + file + ')');
+        continue;
+      }
+      var figmaCanonical = await canonicalFigmaValue(variable, target.modeId, token.type);
+      if (figmaCanonical === undefined) {
+        missing.push(token.name + ' (' + file + ': no value for mode)');
+        continue;
+      }
+      checked++;
+      var contractCanonical = canonicalContractValue(token);
+      if (figmaCanonical !== contractCanonical) {
+        changes.push({
+          file: file,
+          name: token.name,
+          type: token.type,
+          oldCanonical: contractCanonical,
+          newCanonical: figmaCanonical,
+          newValue: proposedValue(figmaCanonical, token.value, resolvedType),
+        });
+      }
+    }
+  }
+
+  // Variables in Figma with no counterpart in the contract: reported, not
+  // proposed — naming and placement of new tokens is a decision for git.
+  var extra = [];
+  for (var name in targets.light.byName) {
+    if (!seen[name]) extra.push(name);
+  }
+
+  return { changes: changes, missing: missing, extra: extra, checked: checked };
+}
+
 figma.ui.onmessage = function (msg) {
-  if (msg.type !== 'sync') return;
-  sync(msg.files)
-    .then(function (count) {
-      log('✅ sync complete: ' + count + ' variables in "' + COLLECTION_NAME + '"');
-      figma.notify('LLP Tokens synced (' + count + ' variables)');
-    })
-    .catch(function (err) {
-      log('❌ ' + err.message);
+  if (msg.type === 'sync') {
+    sync(msg.files)
+      .then(function (count) {
+        log('✅ sync complete: ' + count + ' variables in "' + COLLECTION_NAME + '"');
+        figma.notify('LLP Tokens synced (' + count + ' variables)');
+      })
+      .catch(function (err) {
+        log('❌ ' + err.message);
+      });
+  } else if (msg.type === 'diff') {
+    diff(msg.files)
+      .then(function (result) {
+        figma.ui.postMessage({ type: 'diff-result', result: result });
+      })
+      .catch(function (err) {
+        log('❌ ' + err.message);
+        figma.ui.postMessage({ type: 'diff-result', error: err.message });
+      });
+  } else if (msg.type === 'get-pat') {
+    figma.clientStorage.getAsync('github-pat').then(function (value) {
+      figma.ui.postMessage({ type: 'pat', value: value || '' });
     });
+  } else if (msg.type === 'set-pat') {
+    figma.clientStorage.setAsync('github-pat', msg.value || '');
+  }
 };

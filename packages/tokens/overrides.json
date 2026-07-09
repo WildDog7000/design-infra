@@ -1,0 +1,3 @@
+{
+  "$comment": "Deliberate divergences from the upstream Spectrum source, keyed by contract file then token path. Applied by import-spectrum.mjs after generation. Figma proposal PRs write here (intent) and to tokens/ (effect); the CI drift check verifies the two agree."
+}

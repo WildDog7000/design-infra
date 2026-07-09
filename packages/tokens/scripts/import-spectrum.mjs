@@ -56,7 +56,26 @@ const put = (obj, path, token) => {
   node[parts.at(-1)] = token;
 };
 
+// Deliberate divergences from upstream (e.g. accepted Figma proposals) live
+// in overrides.json — an adapter *input*, applied last. The committed
+// contract therefore always equals adapter output, so the CI drift check
+// holds for proposal PRs too. Schema: { "<contract file>": { "a/b/c": value } }
+let overrides = {};
+try {
+  overrides = JSON.parse(readFileSync(join(outDir, '..', 'overrides.json'), 'utf8'));
+} catch {
+  /* no overrides file — pure upstream */
+}
+
 const writeTokens = (relPath, tree) => {
+  for (const [tokenPath, value] of Object.entries(overrides[relPath] ?? {})) {
+    let node = tree;
+    for (const key of tokenPath.split('/')) node = node?.[key];
+    if (node?.$value === undefined) {
+      throw new Error(`stale override: ${tokenPath} no longer exists in ${relPath}`);
+    }
+    node.$value = value;
+  }
   const file = join(outDir, relPath);
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, JSON.stringify(tree, null, 2) + '\n');

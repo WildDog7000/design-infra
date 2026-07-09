@@ -1,21 +1,45 @@
 <style>
   body { font: 12px/1.5 'Inter', system-ui, sans-serif; margin: 0; padding: 16px; color: #18181b; }
   h2 { font-size: 13px; margin: 0 0 4px; }
+  h3 { font-size: 12px; margin: 16px 0 4px; }
   p { margin: 0 0 12px; color: #71717a; }
   label { display: block; font-weight: 600; margin-bottom: 4px; }
   input { width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid #d4d4d8; border-radius: 6px; font: inherit; margin-bottom: 12px; }
-  button { width: 100%; padding: 8px; border: none; border-radius: 6px; background: #2563eb; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+  button { width: 100%; padding: 8px; border: none; border-radius: 6px; background: #2563eb; color: #fff; font: inherit; font-weight: 600; cursor: pointer; margin-bottom: 8px; }
   button:disabled { background: #a1a1aa; }
-  #log { margin-top: 12px; padding: 8px; background: #f4f4f5; border-radius: 6px; height: 200px; overflow-y: auto; white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 11px; }
+  button.secondary { background: #f4f4f5; color: #18181b; border: 1px solid #d4d4d8; }
+  hr { border: none; border-top: 1px solid #e4e4e7; margin: 16px 0; }
+  #changes { margin: 0 0 8px; max-height: 160px; overflow-y: auto; border: 1px solid #e4e4e7; border-radius: 6px; }
+  #changes:empty { display: none; }
+  .change { display: flex; gap: 6px; align-items: baseline; padding: 6px 8px; border-bottom: 1px solid #f4f4f5; font-family: ui-monospace, monospace; font-size: 11px; }
+  .change:last-child { border-bottom: none; }
+  .change input { width: auto; margin: 0; flex: none; }
+  .change .name { font-weight: 600; }
+  .change .old { color: #b91c1c; text-decoration: line-through; }
+  .change .new { color: #15803d; }
+  #log { margin-top: 12px; padding: 8px; background: #f4f4f5; border-radius: 6px; height: 140px; overflow-y: auto; white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 11px; }
 </style>
 
 <h2>LLP Token Sync</h2>
-<p>git(事实源)→ Figma Variables 的「发布」方向。从 GitHub 拉取 DTCG 契约并同步为变量。</p>
+<p>git 是事实源。Sync = 发布(git→Figma)；Propose = 提案(Figma→git PR)。</p>
 
 <label for="base">契约文件基地址(raw.githubusercontent.com)</label>
 <input id="base" value="https://raw.githubusercontent.com/WildDog7000/design-infra/main/packages/tokens/tokens" />
 
-<button id="sync">Sync from GitHub</button>
+<button id="sync">Sync from GitHub（发布方向）</button>
+
+<hr />
+
+<h3>提案方向 Figma → git</h3>
+<button id="check" class="secondary">Check drift（读回变量并与契约比对）</button>
+<div id="changes"></div>
+
+<div id="propose-area" style="display: none">
+  <label for="pat">GitHub fine-grained PAT（仅本仓库 contents + pull requests 权限）</label>
+  <input id="pat" type="password" placeholder="github_pat_…" />
+  <button id="propose">Propose PR</button>
+</div>
+
 <div id="log">ready.</div>
 
 <script>
@@ -29,32 +53,227 @@
     'usage/color.dark.json',
   ];
 
+  // Kept between "Check drift" and "Propose PR": the parsed contract the
+  // diff ran against, and the divergences it found.
+  var contractFiles = null;
+  var pendingChanges = [];
+
   var logEl = document.getElementById('log');
+  var changesEl = document.getElementById('changes');
+  var proposeArea = document.getElementById('propose-area');
+  var patEl = document.getElementById('pat');
+
   function log(msg) {
     logEl.textContent += '\n' + msg;
     logEl.scrollTop = logEl.scrollHeight;
   }
 
+  function post(msg) {
+    parent.postMessage({ pluginMessage: msg }, '*');
+  }
+
+  async function fetchContract() {
+    var base = document.getElementById('base').value.replace(/\/$/, '');
+    log('fetching ' + FILES.length + ' contract files…');
+    var files = {};
+    for (var i = 0; i < FILES.length; i++) {
+      var res = await fetch(base + '/' + FILES[i]);
+      if (!res.ok) throw new Error(res.status + ' on ' + FILES[i]);
+      files[FILES[i]] = await res.json();
+      log('  ✓ ' + FILES[i]);
+    }
+    return files;
+  }
+
   onmessage = function (event) {
     var msg = event.data.pluginMessage;
-    if (msg && msg.type === 'log') log(msg.msg);
+    if (!msg) return;
+    if (msg.type === 'log') log(msg.msg);
+    if (msg.type === 'pat' && msg.value) patEl.value = msg.value;
+    if (msg.type === 'diff-result') renderDiff(msg);
   };
+
+  post({ type: 'get-pat' });
 
   document.getElementById('sync').onclick = async function () {
     var button = this;
     button.disabled = true;
-    var base = document.getElementById('base').value.replace(/\/$/, '');
     try {
-      log('fetching ' + FILES.length + ' contract files…');
-      var files = {};
-      for (var i = 0; i < FILES.length; i++) {
-        var res = await fetch(base + '/' + FILES[i]);
-        if (!res.ok) throw new Error(res.status + ' on ' + FILES[i]);
-        files[FILES[i]] = await res.json();
-        log('  ✓ ' + FILES[i]);
-      }
+      var files = await fetchContract();
       log('creating variables…');
-      parent.postMessage({ pluginMessage: { type: 'sync', files: files } }, '*');
+      post({ type: 'sync', files: files });
+    } catch (err) {
+      log('❌ ' + err.message);
+    } finally {
+      button.disabled = false;
+    }
+  };
+
+  document.getElementById('check').onclick = async function () {
+    var button = this;
+    button.disabled = true;
+    changesEl.innerHTML = '';
+    proposeArea.style.display = 'none';
+    try {
+      contractFiles = await fetchContract();
+      log('reading variables back…');
+      post({ type: 'diff', files: contractFiles });
+    } catch (err) {
+      log('❌ ' + err.message);
+      button.disabled = false;
+    }
+  };
+
+  function renderDiff(msg) {
+    document.getElementById('check').disabled = false;
+    if (msg.error) return;
+    var result = msg.result;
+    pendingChanges = result.changes;
+
+    if (result.missing.length) log('⚠ ' + result.missing.length + ' contract tokens have no variable (run Sync?)');
+    if (result.extra.length) log('ℹ ' + result.extra.length + ' Figma variables not in contract (new tokens belong in git)');
+
+    if (!pendingChanges.length) {
+      log('✅ in sync — ' + result.checked + ' variables match the contract');
+      return;
+    }
+
+    log('✏️ ' + pendingChanges.length + ' divergence(s) found (' + result.checked + ' checked) — review below');
+    for (var i = 0; i < pendingChanges.length; i++) {
+      var c = pendingChanges[i];
+      var row = document.createElement('label');
+      row.className = 'change';
+      row.innerHTML =
+        '<input type="checkbox" checked data-i="' + i + '" />' +
+        '<span><span class="name">' + c.name + '</span><br />' +
+        '<span class="old">' + c.oldCanonical + '</span> → ' +
+        '<span class="new">' + c.newCanonical + '</span></span>';
+      changesEl.appendChild(row);
+    }
+    proposeArea.style.display = '';
+  }
+
+  /* ---------- GitHub PR flow ---------- */
+
+  function parseRepo(base) {
+    var m = base.match(/^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([^/]+)\/(.+?)\/?$/);
+    if (!m) throw new Error('base URL is not a raw.githubusercontent.com URL');
+    return { owner: m[1], repo: m[2], branch: m[3], prefix: m[4] };
+  }
+
+  async function gh(pat, method, path, body) {
+    var res = await fetch('https://api.github.com' + path, {
+      method: method,
+      headers: {
+        Authorization: 'Bearer ' + pat,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (!res.ok) {
+      var text = await res.text();
+      throw new Error(method + ' ' + path + ' → ' + res.status + ' ' + text.slice(0, 200));
+    }
+    return res.json();
+  }
+
+  function utf8ToBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function applyChange(files, change) {
+    var node = files[change.file];
+    var keys = change.name.split('/');
+    for (var i = 0; i < keys.length; i++) node = node[keys[i]];
+    node.$value = change.newValue;
+  }
+
+  document.getElementById('propose').onclick = async function () {
+    var button = this;
+    var pat = patEl.value.trim();
+    if (!pat) {
+      log('❌ a GitHub PAT is required to open the PR');
+      return;
+    }
+    var selected = [];
+    var boxes = changesEl.querySelectorAll('input:checked');
+    for (var i = 0; i < boxes.length; i++) selected.push(pendingChanges[Number(boxes[i].dataset.i)]);
+    if (!selected.length) {
+      log('❌ no changes selected');
+      return;
+    }
+
+    button.disabled = true;
+    post({ type: 'set-pat', value: pat });
+    try {
+      var repo = parseRepo(document.getElementById('base').value.replace(/\/$/, ''));
+      var api = '/repos/' + repo.owner + '/' + repo.repo;
+
+      log('creating proposal branch…');
+      var baseRef = await gh(pat, 'GET', api + '/git/ref/heads/' + repo.branch);
+      var head = 'tokens/figma-proposal-' + Date.now();
+      await gh(pat, 'POST', api + '/git/refs', { ref: 'refs/heads/' + head, sha: baseRef.object.sha });
+
+      // The contract is generated (Spectrum + overrides), so a proposal must
+      // commit both the intent (overrides.json, an adapter input) and the
+      // effect (updated contract files) — otherwise the CI drift check
+      // regenerates the contract and rejects the hand-edit.
+      var overridesPath = repo.prefix.replace(/\/[^/]+$/, '') + '/overrides.json';
+      var overrides = {};
+      var overridesSha = null;
+      try {
+        var existing = await gh(pat, 'GET', api + '/contents/' + overridesPath + '?ref=' + head);
+        overrides = JSON.parse(decodeURIComponent(escape(atob(existing.content.replace(/\n/g, '')))));
+        overridesSha = existing.sha;
+      } catch (e) {
+        /* no overrides file yet — start empty */
+      }
+
+      var byFile = {};
+      for (var j = 0; j < selected.length; j++) {
+        applyChange(contractFiles, selected[j]);
+        byFile[selected[j].file] = true;
+        if (!overrides[selected[j].file]) overrides[selected[j].file] = {};
+        overrides[selected[j].file][selected[j].name] = selected[j].newValue;
+      }
+
+      var overridesBody = {
+        message: 'proposal(tokens): record overrides from Figma',
+        content: utf8ToBase64(JSON.stringify(overrides, null, 2) + '\n'),
+        branch: head,
+      };
+      if (overridesSha) overridesBody.sha = overridesSha;
+      await gh(pat, 'PUT', api + '/contents/' + overridesPath, overridesBody);
+      log('  ✓ committed overrides.json');
+
+      // Contract files committed with the repo's own serialization
+      // (2-space indent + trailing newline) so the PR diff stays minimal.
+      for (var file in byFile) {
+        var fullPath = repo.prefix + '/' + file;
+        var current = await gh(pat, 'GET', api + '/contents/' + fullPath + '?ref=' + head);
+        await gh(pat, 'PUT', api + '/contents/' + fullPath, {
+          message: 'proposal(tokens): update ' + file + ' from Figma',
+          content: utf8ToBase64(JSON.stringify(contractFiles[file], null, 2) + '\n'),
+          sha: current.sha,
+          branch: head,
+        });
+        log('  ✓ committed ' + file);
+      }
+
+      var lines = ['Token change proposal from Figma (LLP Token Sync plugin).', '', '| token | before | after |', '| --- | --- | --- |'];
+      for (var k = 0; k < selected.length; k++) {
+        lines.push('| `' + selected[k].name + '` | `' + selected[k].oldCanonical + '` | `' + selected[k].newCanonical + '` |');
+      }
+      lines.push('', 'Source of truth stays in git: review + CI decide, then re-sync Figma.');
+
+      var pr = await gh(pat, 'POST', api + '/pulls', {
+        title: 'Token proposal from Figma (' + selected.length + ' change' + (selected.length > 1 ? 's' : '') + ')',
+        head: head,
+        base: repo.branch,
+        body: lines.join('\n'),
+      });
+      log('✅ PR created: ' + pr.html_url);
     } catch (err) {
       log('❌ ' + err.message);
     } finally {
