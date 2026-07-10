@@ -15,7 +15,9 @@
   "scripts": {
     "import:spectrum": "node scripts/import-spectrum.mjs",
     "build": "node build.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "release": "node scripts/release.mjs",
+    "release:diff": "node scripts/release-diff.mjs"
   },
   "devDependencies": {
     "@adobe/spectrum-tokens": "^14.13.2",

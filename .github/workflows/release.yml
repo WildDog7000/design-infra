@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+  id-token: write # npm provenance
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify tokens match ingestion adapter output
+        run: |
+          npm run import:spectrum --workspace @llp/tokens
+          git diff --exit-code packages/tokens/tokens
+
+      - name: Build all platform deliverables
+        run: npm run build
+
+      # Graceful degradation: without an NPM_TOKEN secret the pipeline still
+      # exercises the full publish path as a dry run, so the release flow is
+      # verifiable before an npm account exists.
+      - name: Publish to npm (dry-run without NPM_TOKEN)
+        working-directory: packages/tokens
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$NODE_AUTH_TOKEN" ]; then
+            npm publish --access public --provenance
+          else
+            echo "::notice::NPM_TOKEN not configured — npm publish ran as dry-run"
+            npm publish --access public --dry-run
+          fi
+
+      - name: Create GitHub Release with latest changelog entry
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const md = fs.readFileSync('packages/tokens/CHANGELOG.md', 'utf8');
+            const entry = md.split(/^## /m).filter(Boolean)[1];
+            fs.writeFileSync('release-notes.md', entry ? '## ' + entry : 'See CHANGELOG.md');
+          "
+          gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file release-notes.md
