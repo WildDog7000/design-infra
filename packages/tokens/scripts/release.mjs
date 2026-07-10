@@ -15,8 +15,11 @@ import { fileURLToPath } from 'node:url';
 import { diffContract, latestTag } from './release-diff.mjs';
 
 const pkgDir = join(dirname(fileURLToPath(import.meta.url)), '..');
-const run = (cmd, opts = {}) => execSync(cmd, { encoding: 'utf8', stdio: 'inherit', ...opts });
-const capture = (cmd) => execSync(cmd, { encoding: 'utf8' }).trim();
+// npm run --workspace sets cwd to the package — resolve the repo root and
+// run every git/npm command from there so paths mean what they say
+const repoRoot = execSync('git rev-parse --show-toplevel', { encoding: 'utf8', cwd: pkgDir }).trim();
+const run = (cmd, opts = {}) => execSync(cmd, { encoding: 'utf8', stdio: 'inherit', cwd: repoRoot, ...opts });
+const capture = (cmd) => execSync(cmd, { encoding: 'utf8', cwd: repoRoot }).trim();
 
 const fail = (msg) => {
   console.error(`✗ ${msg}`);
@@ -82,7 +85,7 @@ writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
 run('npm install --package-lock-only', { stdio: 'pipe' });
 
 // 6. commit + tag
-run(`git add ${pkgPath} ${changelogPath} package-lock.json`);
+run(`git add "${pkgPath}" "${changelogPath}" package-lock.json`);
 run(`git commit -m "release: @llp/tokens v${version}"`);
 run(`git tag v${version}`);
 
