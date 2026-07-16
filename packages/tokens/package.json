@@ -1,6 +1,6 @@
 {
   "name": "@llp-design/tokens",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "LLP design tokens — W3C DTCG source of truth, built with Style Dictionary",
   "license": "MIT",
   "repository": {

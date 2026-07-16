@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.1 — 2026-07-16
+
+_no contract changes — see commit history_
+
 ## v0.2.0 — 2026-07-16
 
 ### Added
