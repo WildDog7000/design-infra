@@ -33,6 +33,10 @@ jobs:
       - name: Run workspace tests (MCP server unit + client E2E)
         run: npm test
 
+      - name: Build-check the remote MCP worker bundle
+        working-directory: packages/mcp-remote
+        run: npx wrangler deploy --dry-run
+
       # The demo is a reference consumer: it may only use tokens (no raw
       # colors), and every token it references must exist in the built CSS.
       - name: Check demo consumes the token contract correctly

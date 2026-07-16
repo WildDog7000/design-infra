@@ -1,0 +1,21 @@
+{
+  "name": "@llp-design/mcp-remote",
+  "version": "0.1.0",
+  "description": "LLP design-system MCP server, remote form — Cloudflare Worker serving the token contract over Streamable HTTP",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@llp-design/mcp-server": "^0.1.0",
+    "@modelcontextprotocol/sdk": "1.23.0",
+    "agents": "^0.2.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

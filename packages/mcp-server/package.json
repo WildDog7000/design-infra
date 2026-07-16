@@ -14,7 +14,9 @@
   },
   "files": [
     "server.mjs",
-    "lib.mjs"
+    "lib.mjs",
+    "engine.mjs",
+    "tools.mjs"
   ],
   "publishConfig": {
     "access": "public"
