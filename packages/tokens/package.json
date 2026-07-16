@@ -9,6 +9,9 @@
     "directory": "packages/tokens"
   },
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "tokens"
