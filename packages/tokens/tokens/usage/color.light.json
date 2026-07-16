@@ -119,6 +119,12 @@
         "$description": "spectrum: informative-visual-color"
       }
     },
+    "static_white": {
+      "text": {
+        "$value": "{color.white}",
+        "$description": "spectrum: static-white-text-color"
+      }
+    },
     "disabled": {
       "bg": {
         "$value": "{color.gray.100}",

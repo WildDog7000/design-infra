@@ -5,9 +5,9 @@
  * plus dimension/typography primitives (space/radius/font — these have no
  * usage tier). No raw color values allowed; CI greps this file for hex/rgb.
  *
- * Known contract gap found by this demo: there is no usage-tier token for
- * "content on accent background" (Spectrum's static-white), so button labels
- * fall back to the primitive --llp-color-white. Candidate for overrides.json.
+ * History: this file surfaced a contract gap — no usage-tier token for
+ * content on bold backgrounds — which was closed in v0.2.0 by mapping
+ * Spectrum's static-white-text-color into the usage tier.
  */
 
 * { box-sizing: border-box; }
@@ -79,7 +79,7 @@ body {
 
 .button--accent {
   background: var(--llp-color-accent-bg-default);
-  color: var(--llp-color-white); /* contract gap: no on-accent usage token */
+  color: var(--llp-color-static-white-text);
 }
 .button--accent:hover { background: var(--llp-color-accent-bg-hover); }
 .button--accent:active { background: var(--llp-color-accent-bg-down); }
@@ -105,7 +105,7 @@ body {
   border-radius: var(--llp-radius-800);
   font-size: var(--llp-font-size-75);
   font-weight: var(--llp-font-weight-bold);
-  color: var(--llp-color-white); /* same contract gap as buttons */
+  color: var(--llp-color-static-white-text);
 }
 
 .badge--negative { background: var(--llp-color-negative-bg-default); }

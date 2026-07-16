@@ -235,6 +235,9 @@ const USAGE = {
   'color.notice.visual': 'notice-visual-color',
   'color.informative.bg.default': 'informative-background-color-default',
   'color.informative.visual': 'informative-visual-color',
+  // content on bold/static backgrounds (accent buttons, status badges) —
+  // gap surfaced by the demo's consumer check (Phase 6, ADR-0009 candidate)
+  'color.static_white.text': 'static-white-text-color',
   'color.disabled.bg': 'disabled-background-color',
   'color.disabled.content': 'disabled-content-color',
   'color.disabled.border': 'disabled-border-color',
