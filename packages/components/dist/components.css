@@ -1,0 +1,241 @@
+/* LLP components bundle. Generated — do not edit. Requires foundation.css. */
+
+/* ---- Button (src/button.css) ---- */
+/* llp-Button — anatomy ported from Spectrum CSS; every value is a contract token.
+ * Token policy: usage tier first; semantic tier only where the usage tier has
+ * no state yet (marked "gap:"), each mark a candidate USAGE-table addition. */
+
+.llp-Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--llp-space-100);
+  border: var(--llp-space-25) solid transparent;
+  border-radius: var(--llp-radius-full);
+  font-family: var(--llp-font-family-sans);
+  font-weight: var(--llp-font-weight-bold);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.13s, border-color 0.13s, color 0.13s;
+}
+
+.llp-Button:focus-visible {
+  /* gap: no color/focus/indicator usage token yet */
+  outline: var(--llp-space-50) solid var(--llp-color-accent-900);
+  outline-offset: var(--llp-space-50);
+}
+
+.llp-Button-label { white-space: nowrap; }
+
+/* sizes */
+.llp-Button--sizeS { font-size: var(--llp-font-size-75); padding: var(--llp-space-50) var(--llp-space-200); }
+.llp-Button--sizeM { font-size: var(--llp-font-size-100); padding: var(--llp-space-85) var(--llp-space-300); }
+.llp-Button--sizeL { font-size: var(--llp-font-size-200); padding: var(--llp-space-100) var(--llp-space-400); }
+
+/* variants */
+.llp-Button--accent {
+  background: var(--llp-color-accent-bg-default);
+  color: var(--llp-color-static-white-text);
+}
+.llp-Button--accent:hover { background: var(--llp-color-accent-bg-hover); }
+.llp-Button--accent:active { background: var(--llp-color-accent-bg-down); }
+
+.llp-Button--negative {
+  background: var(--llp-color-negative-bg-default);
+  color: var(--llp-color-static-white-text);
+}
+/* gap: no negative bg hover/down usage tokens yet */
+.llp-Button--negative:hover { background: var(--llp-color-negative-1000); }
+.llp-Button--negative:active { background: var(--llp-color-negative-1100); }
+
+.llp-Button--secondary {
+  /* gap: no secondary/neutral-subdued bg usage tokens yet */
+  background: var(--llp-color-gray-200);
+  color: var(--llp-color-neutral-content-default);
+}
+.llp-Button--secondary:hover { background: var(--llp-color-gray-300); }
+.llp-Button--secondary:active { background: var(--llp-color-gray-400); }
+
+.llp-Button:disabled,
+.llp-Button--secondary:disabled {
+  background: var(--llp-color-disabled-bg);
+  color: var(--llp-color-disabled-content);
+  border-color: var(--llp-color-disabled-border);
+  cursor: not-allowed;
+}
+
+/* ---- Badge (src/badge.css) ---- */
+/* llp-Badge — status labels; semantics carried by color role, not by shade. */
+
+.llp-Badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--llp-space-75);
+  border-radius: var(--llp-radius-full);
+  font-family: var(--llp-font-family-sans);
+  font-weight: var(--llp-font-weight-bold);
+  color: var(--llp-color-static-white-text);
+}
+
+.llp-Badge-label { white-space: nowrap; }
+
+/* sizes */
+.llp-Badge--sizeS { font-size: var(--llp-font-size-50); padding: var(--llp-space-25) var(--llp-space-200); }
+.llp-Badge--sizeM { font-size: var(--llp-font-size-75); padding: var(--llp-space-50) var(--llp-space-200); }
+
+/* variants */
+.llp-Badge--accent { background: var(--llp-color-accent-bg-default); }
+.llp-Badge--informative { background: var(--llp-color-informative-bg-default); }
+.llp-Badge--positive { background: var(--llp-color-positive-bg-default); }
+.llp-Badge--negative { background: var(--llp-color-negative-bg-default); }
+.llp-Badge--neutral { background: var(--llp-color-neutral-bg-default); }
+.llp-Badge--notice {
+  background: var(--llp-color-notice-bg-default);
+  /* notice is a light hue in light theme — dark content keeps contrast
+   * (gap: no static-black-text usage token yet) */
+  color: var(--llp-color-black);
+}
+
+/* ---- Card (src/card.css) ---- */
+/* llp-Card — content container on a base surface. */
+
+.llp-Card {
+  display: flex;
+  flex-direction: column;
+  background: var(--llp-color-bg-elevated);
+  /* gap: no border/default usage token yet */
+  border: var(--llp-space-25) solid var(--llp-color-gray-200);
+  border-radius: var(--llp-radius-500);
+  overflow: hidden;
+  font-family: var(--llp-font-family-sans);
+  transition: border-color 0.13s;
+}
+
+.llp-Card:hover { border-color: var(--llp-color-gray-400); }
+
+.llp-Card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--llp-space-100);
+  padding: var(--llp-space-400);
+}
+
+.llp-Card-title {
+  margin: 0;
+  font-size: var(--llp-font-size-300);
+  font-weight: var(--llp-font-weight-medium);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Card-subtitle {
+  margin: 0;
+  font-size: var(--llp-font-size-75);
+  font-weight: var(--llp-font-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--llp-color-neutral-subdued-content-default);
+}
+
+.llp-Card-content {
+  font-size: var(--llp-font-size-100);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Card-footer {
+  padding: var(--llp-space-200) var(--llp-space-400);
+  border-top: var(--llp-space-25) solid var(--llp-color-gray-200);
+  font-size: var(--llp-font-size-75);
+  color: var(--llp-color-neutral-subdued-content-default);
+}
+
+/* ---- TextField (src/textfield.css) ---- */
+/* llp-TextField — labeled single-line input with help text and invalid state. */
+
+.llp-TextField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--llp-space-75);
+  font-family: var(--llp-font-family-sans);
+}
+
+.llp-TextField-label {
+  font-size: var(--llp-font-size-75);
+  font-weight: var(--llp-font-weight-medium);
+  color: var(--llp-color-neutral-subdued-content-default);
+}
+
+.llp-TextField-input {
+  font: inherit;
+  font-size: var(--llp-font-size-100);
+  color: var(--llp-color-neutral-content-default);
+  background: var(--llp-color-bg-base);
+  /* gap: no border/default usage token yet */
+  border: var(--llp-space-25) solid var(--llp-color-gray-400);
+  border-radius: var(--llp-radius-100);
+  padding: var(--llp-space-85) var(--llp-space-200);
+  transition: border-color 0.13s;
+}
+
+.llp-TextField-input::placeholder {
+  color: var(--llp-color-neutral-subdued-content-default);
+  font-style: italic;
+}
+
+.llp-TextField-input:hover { border-color: var(--llp-color-gray-500); }
+
+.llp-TextField-input:focus {
+  outline: none;
+  /* gap: no color/focus/indicator usage token yet */
+  border-color: var(--llp-color-accent-900);
+}
+
+.llp-TextField-input:disabled {
+  background: var(--llp-color-disabled-bg);
+  color: var(--llp-color-disabled-content);
+  border-color: var(--llp-color-disabled-border);
+  cursor: not-allowed;
+}
+
+.llp-TextField--invalid .llp-TextField-input {
+  border-color: var(--llp-color-negative-content-default);
+}
+
+.llp-TextField-help {
+  font-size: var(--llp-font-size-75);
+  color: var(--llp-color-neutral-subdued-content-default);
+}
+
+.llp-TextField--invalid .llp-TextField-help {
+  color: var(--llp-color-negative-content-default);
+}
+
+/* ---- Table (src/table.css) ---- */
+/* llp-Table — data rows for list pages. */
+
+.llp-Table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--llp-font-family-sans);
+  font-size: var(--llp-font-size-100);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Table th {
+  text-align: left;
+  font-size: var(--llp-font-size-75);
+  font-weight: var(--llp-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--llp-color-neutral-subdued-content-default);
+  padding: var(--llp-space-200) var(--llp-space-300);
+  /* gap: no border/default usage token yet */
+  border-bottom: var(--llp-space-50) solid var(--llp-color-gray-300);
+}
+
+.llp-Table td {
+  padding: var(--llp-space-200) var(--llp-space-300);
+  border-bottom: var(--llp-space-25) solid var(--llp-color-gray-200);
+}
+
+.llp-Table tbody tr { transition: background 0.13s; }
+.llp-Table tbody tr:hover { background: var(--llp-color-bg-layer-1); }
