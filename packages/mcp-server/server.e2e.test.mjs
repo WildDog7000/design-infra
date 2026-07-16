@@ -21,7 +21,7 @@ test('MCP client round-trip over stdio', async (t) => {
   const { tools } = await client.listTools();
   assert.deepEqual(
     tools.map((tool) => tool.name).sort(),
-    ['resolve_token', 'search_tokens', 'suggest_token']
+    ['get_component', 'list_components', 'resolve_token', 'search_tokens', 'suggest_token']
   );
 
   const search = await client.callTool({
@@ -51,4 +51,17 @@ test('MCP client round-trip over stdio', async (t) => {
     arguments: { name: 'color.nope' },
   });
   assert.equal(bad.isError, true, 'unknown token surfaces as tool error, not a crash');
+
+  // component tools (registered because the workspace registry is present)
+  const list = await client.callTool({ name: 'list_components', arguments: {} });
+  const { components } = JSON.parse(list.content[0].text);
+  assert.ok(components.some((c) => c.slug === 'button'));
+
+  const button = await client.callTool({ name: 'get_component', arguments: { slug: 'button' } });
+  const parsed = JSON.parse(button.content[0].text);
+  assert.match(parsed.markup, /llp-Button/);
+  assert.match(parsed.css, /\.llp-Button\s*\{/);
+
+  const foundation = await client.callTool({ name: 'get_component', arguments: { slug: 'foundation' } });
+  assert.match(JSON.parse(foundation.content[0].text).css, /--llp-color-accent-bg-default/);
 });

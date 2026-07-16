@@ -21,5 +21,11 @@ console.log('resolve chain →', JSON.parse(chain.content[0].text).chain.map((c)
 const bad = await client.callTool({ name: 'resolve_token', arguments: { name: 'color.nope' } });
 console.log('error path isError:', bad.isError === true);
 
+const list = await client.callTool({ name: 'list_components', arguments: {} });
+console.log('components:', JSON.parse(list.content[0].text).components.map((c) => c.slug).join(', '));
+
+const button = await client.callTool({ name: 'get_component', arguments: { slug: 'button' } });
+console.log('button css bytes:', JSON.parse(button.content[0].text).css.length);
+
 await client.close();
 console.log(`✔ remote MCP E2E passed against ${url}`);

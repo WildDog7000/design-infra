@@ -1,0 +1,59 @@
+/* llp-TextField — labeled single-line input with help text and invalid state. */
+
+.llp-TextField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--llp-space-75);
+  font-family: var(--llp-font-family-sans);
+}
+
+.llp-TextField-label {
+  font-size: var(--llp-font-size-75);
+  font-weight: var(--llp-font-weight-medium);
+  color: var(--llp-color-neutral-subdued-content-default);
+}
+
+.llp-TextField-input {
+  font: inherit;
+  font-size: var(--llp-font-size-100);
+  color: var(--llp-color-neutral-content-default);
+  background: var(--llp-color-bg-base);
+  /* gap: no border/default usage token yet */
+  border: var(--llp-space-25) solid var(--llp-color-gray-400);
+  border-radius: var(--llp-radius-100);
+  padding: var(--llp-space-85) var(--llp-space-200);
+  transition: border-color 0.13s;
+}
+
+.llp-TextField-input::placeholder {
+  color: var(--llp-color-neutral-subdued-content-default);
+  font-style: italic;
+}
+
+.llp-TextField-input:hover { border-color: var(--llp-color-gray-500); }
+
+.llp-TextField-input:focus {
+  outline: none;
+  /* gap: no color/focus/indicator usage token yet */
+  border-color: var(--llp-color-accent-900);
+}
+
+.llp-TextField-input:disabled {
+  background: var(--llp-color-disabled-bg);
+  color: var(--llp-color-disabled-content);
+  border-color: var(--llp-color-disabled-border);
+  cursor: not-allowed;
+}
+
+.llp-TextField--invalid .llp-TextField-input {
+  border-color: var(--llp-color-negative-content-default);
+}
+
+.llp-TextField-help {
+  font-size: var(--llp-font-size-75);
+  color: var(--llp-color-neutral-subdued-content-default);
+}
+
+.llp-TextField--invalid .llp-TextField-help {
+  color: var(--llp-color-negative-content-default);
+}

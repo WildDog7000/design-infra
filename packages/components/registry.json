@@ -1,0 +1,68 @@
+{
+  "$comment": "Machine-readable component registry — the data source for the MCP list_components/get_component tools. Markup templates are canonical; variants are modifier classes applied to the root element.",
+  "foundation": {
+    "description": "Every page must inline the foundation stylesheet (design tokens, light + dark) once, plus the CSS of each component used. Set data-theme=\"dark\" on <html> to switch theme.",
+    "cssFile": "dist/foundation.css"
+  },
+  "components": [
+    {
+      "name": "Button",
+      "slug": "button",
+      "cssFile": "src/button.css",
+      "description": "Actions. Use accent for the single primary action on a page, secondary for everything else, negative for destructive actions.",
+      "markup": "<button class=\"llp-Button llp-Button--accent llp-Button--sizeM\"><span class=\"llp-Button-label\">Label</span></button>",
+      "variants": {
+        "llp-Button--accent": "primary action (one per view)",
+        "llp-Button--secondary": "default choice for most actions",
+        "llp-Button--negative": "destructive action"
+      },
+      "sizes": ["llp-Button--sizeS", "llp-Button--sizeM", "llp-Button--sizeL"],
+      "states": "disabled attribute supported; :hover/:active/:focus-visible styled"
+    },
+    {
+      "name": "Badge",
+      "slug": "badge",
+      "cssFile": "src/badge.css",
+      "description": "Status labels for list rows and cards. Color carries the meaning — never use a status color decoratively.",
+      "markup": "<span class=\"llp-Badge llp-Badge--positive llp-Badge--sizeM\"><span class=\"llp-Badge-label\">Active</span></span>",
+      "variants": {
+        "llp-Badge--accent": "highlighted / featured",
+        "llp-Badge--informative": "informational status",
+        "llp-Badge--positive": "success / active / healthy",
+        "llp-Badge--negative": "error / failed / blocked",
+        "llp-Badge--notice": "warning / needs attention",
+        "llp-Badge--neutral": "inactive / archived / default"
+      },
+      "sizes": ["llp-Badge--sizeS", "llp-Badge--sizeM"]
+    },
+    {
+      "name": "Card",
+      "slug": "card",
+      "cssFile": "src/card.css",
+      "description": "Content container on a page background. Use as the section wrapper on form and list pages.",
+      "markup": "<div class=\"llp-Card\"><div class=\"llp-Card-body\"><p class=\"llp-Card-subtitle\">Section</p><h2 class=\"llp-Card-title\">Title</h2><div class=\"llp-Card-content\">Content</div></div><div class=\"llp-Card-footer\">Footer note</div></div>",
+      "variants": {},
+      "notes": "llp-Card-subtitle and llp-Card-footer are optional."
+    },
+    {
+      "name": "TextField",
+      "slug": "textfield",
+      "cssFile": "src/textfield.css",
+      "description": "Labeled single-line input for forms, with optional help text and invalid state.",
+      "markup": "<label class=\"llp-TextField\"><span class=\"llp-TextField-label\">Name</span><input class=\"llp-TextField-input\" type=\"text\" placeholder=\"Enter name\"><span class=\"llp-TextField-help\">Help text</span></label>",
+      "variants": {
+        "llp-TextField--invalid": "validation error — pair with an error message in llp-TextField-help"
+      },
+      "states": "disabled attribute on the input supported"
+    },
+    {
+      "name": "Table",
+      "slug": "table",
+      "cssFile": "src/table.css",
+      "description": "Data rows for list pages. Pair status columns with Badge.",
+      "markup": "<table class=\"llp-Table\"><thead><tr><th>Name</th><th>Status</th></tr></thead><tbody><tr><td>Item</td><td><span class=\"llp-Badge llp-Badge--positive llp-Badge--sizeS\"><span class=\"llp-Badge-label\">Active</span></span></td></tr></tbody></table>",
+      "variants": {},
+      "notes": "Rows highlight on hover; wrap in llp-Card for a framed list."
+    }
+  ]
+}

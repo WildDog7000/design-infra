@@ -1,0 +1,62 @@
+/* llp-Button — anatomy ported from Spectrum CSS; every value is a contract token.
+ * Token policy: usage tier first; semantic tier only where the usage tier has
+ * no state yet (marked "gap:"), each mark a candidate USAGE-table addition. */
+
+.llp-Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--llp-space-100);
+  border: var(--llp-space-25) solid transparent;
+  border-radius: var(--llp-radius-full);
+  font-family: var(--llp-font-family-sans);
+  font-weight: var(--llp-font-weight-bold);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.13s, border-color 0.13s, color 0.13s;
+}
+
+.llp-Button:focus-visible {
+  /* gap: no color/focus/indicator usage token yet */
+  outline: var(--llp-space-50) solid var(--llp-color-accent-900);
+  outline-offset: var(--llp-space-50);
+}
+
+.llp-Button-label { white-space: nowrap; }
+
+/* sizes */
+.llp-Button--sizeS { font-size: var(--llp-font-size-75); padding: var(--llp-space-50) var(--llp-space-200); }
+.llp-Button--sizeM { font-size: var(--llp-font-size-100); padding: var(--llp-space-85) var(--llp-space-300); }
+.llp-Button--sizeL { font-size: var(--llp-font-size-200); padding: var(--llp-space-100) var(--llp-space-400); }
+
+/* variants */
+.llp-Button--accent {
+  background: var(--llp-color-accent-bg-default);
+  color: var(--llp-color-static-white-text);
+}
+.llp-Button--accent:hover { background: var(--llp-color-accent-bg-hover); }
+.llp-Button--accent:active { background: var(--llp-color-accent-bg-down); }
+
+.llp-Button--negative {
+  background: var(--llp-color-negative-bg-default);
+  color: var(--llp-color-static-white-text);
+}
+/* gap: no negative bg hover/down usage tokens yet */
+.llp-Button--negative:hover { background: var(--llp-color-negative-1000); }
+.llp-Button--negative:active { background: var(--llp-color-negative-1100); }
+
+.llp-Button--secondary {
+  /* gap: no secondary/neutral-subdued bg usage tokens yet */
+  background: var(--llp-color-gray-200);
+  color: var(--llp-color-neutral-content-default);
+}
+.llp-Button--secondary:hover { background: var(--llp-color-gray-300); }
+.llp-Button--secondary:active { background: var(--llp-color-gray-400); }
+
+.llp-Button:disabled,
+.llp-Button--secondary:disabled {
+  background: var(--llp-color-disabled-bg);
+  color: var(--llp-color-disabled-content);
+  border-color: var(--llp-color-disabled-border);
+  cursor: not-allowed;
+}

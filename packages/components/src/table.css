@@ -1,0 +1,29 @@
+/* llp-Table — data rows for list pages. */
+
+.llp-Table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--llp-font-family-sans);
+  font-size: var(--llp-font-size-100);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Table th {
+  text-align: left;
+  font-size: var(--llp-font-size-75);
+  font-weight: var(--llp-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--llp-color-neutral-subdued-content-default);
+  padding: var(--llp-space-200) var(--llp-space-300);
+  /* gap: no border/default usage token yet */
+  border-bottom: var(--llp-space-50) solid var(--llp-color-gray-300);
+}
+
+.llp-Table td {
+  padding: var(--llp-space-200) var(--llp-space-300);
+  border-bottom: var(--llp-space-25) solid var(--llp-color-gray-200);
+}
+
+.llp-Table tbody tr { transition: background 0.13s; }
+.llp-Table tbody tr:hover { background: var(--llp-color-bg-layer-1); }

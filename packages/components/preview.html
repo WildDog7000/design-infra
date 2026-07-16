@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LLP Components — preview</title>
+  <link rel="stylesheet" href="dist/foundation.css" />
+  <link rel="stylesheet" href="dist/components.css" />
+  <style>
+    body { margin: 0; padding: var(--llp-space-500); background: var(--llp-color-bg-base); font-family: var(--llp-font-family-sans); transition: background 0.2s; }
+    .page { display: grid; gap: var(--llp-space-400); max-width: 720px; margin: 0 auto; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; }
+    h1 { margin: 0; font-size: var(--llp-font-size-500); color: var(--llp-color-neutral-content-default); }
+    .row { display: flex; gap: var(--llp-space-200); flex-wrap: wrap; align-items: center; }
+    form.stack { display: grid; gap: var(--llp-space-300); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="toolbar">
+      <h1>LLP Components</h1>
+      <button class="llp-Button llp-Button--secondary llp-Button--sizeM" id="theme-toggle">
+        <span class="llp-Button-label">🌙 Dark</span>
+      </button>
+    </div>
+
+    <!-- form page pattern -->
+    <div class="llp-Card">
+      <div class="llp-Card-body">
+        <p class="llp-Card-subtitle">Form page</p>
+        <h2 class="llp-Card-title">New project</h2>
+        <form class="stack" onsubmit="return false">
+          <label class="llp-TextField">
+            <span class="llp-TextField-label">Project name</span>
+            <input class="llp-TextField-input" type="text" placeholder="e.g. design-infra" />
+            <span class="llp-TextField-help">Lowercase, hyphens allowed.</span>
+          </label>
+          <label class="llp-TextField llp-TextField--invalid">
+            <span class="llp-TextField-label">Owner email</span>
+            <input class="llp-TextField-input" type="email" value="not-an-email" />
+            <span class="llp-TextField-help">Enter a valid email address.</span>
+          </label>
+          <label class="llp-TextField">
+            <span class="llp-TextField-label">Disabled field</span>
+            <input class="llp-TextField-input" type="text" disabled placeholder="Locked" />
+          </label>
+          <div class="row">
+            <button class="llp-Button llp-Button--accent llp-Button--sizeM"><span class="llp-Button-label">Create project</span></button>
+            <button class="llp-Button llp-Button--secondary llp-Button--sizeM"><span class="llp-Button-label">Cancel</span></button>
+            <button class="llp-Button llp-Button--negative llp-Button--sizeM"><span class="llp-Button-label">Delete</span></button>
+            <button class="llp-Button llp-Button--accent llp-Button--sizeM" disabled><span class="llp-Button-label">Disabled</span></button>
+          </div>
+        </form>
+      </div>
+      <div class="llp-Card-footer">Buttons: sizes S/M/L · variants accent / secondary / negative</div>
+    </div>
+
+    <!-- list page pattern -->
+    <div class="llp-Card">
+      <div class="llp-Card-body">
+        <p class="llp-Card-subtitle">List page</p>
+        <h2 class="llp-Card-title">Projects</h2>
+      </div>
+      <table class="llp-Table">
+        <thead>
+          <tr><th>Name</th><th>Status</th><th>Owner</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>design-infra</td>
+            <td><span class="llp-Badge llp-Badge--positive llp-Badge--sizeS"><span class="llp-Badge-label">Active</span></span></td>
+            <td>linliu</td>
+            <td><button class="llp-Button llp-Button--secondary llp-Button--sizeS"><span class="llp-Button-label">Open</span></button></td>
+          </tr>
+          <tr>
+            <td>legacy-site</td>
+            <td><span class="llp-Badge llp-Badge--notice llp-Badge--sizeS"><span class="llp-Badge-label">Deprecated</span></span></td>
+            <td>linliu</td>
+            <td><button class="llp-Button llp-Button--secondary llp-Button--sizeS"><span class="llp-Button-label">Open</span></button></td>
+          </tr>
+          <tr>
+            <td>broken-experiment</td>
+            <td><span class="llp-Badge llp-Badge--negative llp-Badge--sizeS"><span class="llp-Badge-label">Failed</span></span></td>
+            <td>linliu</td>
+            <td><button class="llp-Button llp-Button--secondary llp-Button--sizeS"><span class="llp-Button-label">Open</span></button></td>
+          </tr>
+          <tr>
+            <td>archived-poc</td>
+            <td><span class="llp-Badge llp-Badge--neutral llp-Badge--sizeS"><span class="llp-Badge-label">Archived</span></span></td>
+            <td>linliu</td>
+            <td><button class="llp-Button llp-Button--secondary llp-Button--sizeS"><span class="llp-Button-label">Open</span></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="llp-Card-footer">Table rows highlight on hover · status via Badge</div>
+    </div>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const label = toggle.querySelector('.llp-Button-label');
+    const apply = (dark) => {
+      if (dark) root.dataset.theme = 'dark';
+      else delete root.dataset.theme;
+      label.textContent = dark ? '☀️ Light' : '🌙 Dark';
+    };
+    apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    toggle.addEventListener('click', () => apply(root.dataset.theme !== 'dark'));
+  </script>
+</body>
+</html>

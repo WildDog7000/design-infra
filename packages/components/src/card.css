@@ -1,0 +1,50 @@
+/* llp-Card — content container on a base surface. */
+
+.llp-Card {
+  display: flex;
+  flex-direction: column;
+  background: var(--llp-color-bg-elevated);
+  /* gap: no border/default usage token yet */
+  border: var(--llp-space-25) solid var(--llp-color-gray-200);
+  border-radius: var(--llp-radius-500);
+  overflow: hidden;
+  font-family: var(--llp-font-family-sans);
+  transition: border-color 0.13s;
+}
+
+.llp-Card:hover { border-color: var(--llp-color-gray-400); }
+
+.llp-Card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--llp-space-100);
+  padding: var(--llp-space-400);
+}
+
+.llp-Card-title {
+  margin: 0;
+  font-size: var(--llp-font-size-300);
+  font-weight: var(--llp-font-weight-medium);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Card-subtitle {
+  margin: 0;
+  font-size: var(--llp-font-size-75);
+  font-weight: var(--llp-font-weight-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--llp-color-neutral-subdued-content-default);
+}
+
+.llp-Card-content {
+  font-size: var(--llp-font-size-100);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Card-footer {
+  padding: var(--llp-space-200) var(--llp-space-400);
+  border-top: var(--llp-space-25) solid var(--llp-color-gray-200);
+  font-size: var(--llp-font-size-75);
+  color: var(--llp-color-neutral-subdued-content-default);
+}

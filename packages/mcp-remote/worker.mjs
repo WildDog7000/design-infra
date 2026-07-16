@@ -10,9 +10,32 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { createMcpHandler } from 'agents/mcp';
 import { CONTRACT_FILES, createEngine } from '@llp-design/mcp-server/engine.mjs';
 import { registerTools } from '@llp-design/mcp-server/tools.mjs';
+import { registerComponentTools } from '@llp-design/mcp-server/components.mjs';
 
-const RAW_BASE = 'https://raw.githubusercontent.com/WildDog7000/design-infra/main/packages/tokens/tokens/';
+const REPO_RAW = 'https://raw.githubusercontent.com/WildDog7000/design-infra/main/packages/';
+const RAW_BASE = REPO_RAW + 'tokens/tokens/';
+const COMPONENTS_RAW = REPO_RAW + 'components/';
 const TTL_MS = 5 * 60 * 1000;
+
+// tiny raw-file cache for component registry/CSS (same freshness model)
+const fileCache = new Map(); // path → { body, at }
+async function rawFile(path) {
+  const hit = fileCache.get(path);
+  if (hit && Date.now() - hit.at < TTL_MS) return hit.body;
+  const res = await fetch(COMPONENTS_RAW + path);
+  if (!res.ok) {
+    if (hit) return hit.body;
+    throw new Error(`component file fetch failed: ${path} → HTTP ${res.status}`);
+  }
+  const body = await res.text();
+  fileCache.set(path, { body, at: Date.now() });
+  return body;
+}
+
+const componentLoader = {
+  getRegistry: async () => JSON.parse(await rawFile('registry.json')),
+  getFile: (path) => rawFile(path),
+};
 
 let cached; // { engine, at }
 
@@ -71,6 +94,7 @@ export default {
     // nothing here streams, and JSON avoids edge buffering quirks entirely.
     const server = new McpServer({ name: 'llp-design-tokens', version: '0.1.0' });
     registerTools(server, lazyEngine);
+    registerComponentTools(server, componentLoader);
     return createMcpHandler(server, { route: '/mcp', enableJsonResponse: true })(request, env, ctx);
   },
 };

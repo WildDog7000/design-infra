@@ -16,7 +16,8 @@
     "server.mjs",
     "lib.mjs",
     "engine.mjs",
-    "tools.mjs"
+    "tools.mjs",
+    "components.mjs"
   ],
   "publishConfig": {
     "access": "public"

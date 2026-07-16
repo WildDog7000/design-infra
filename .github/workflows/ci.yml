@@ -30,6 +30,11 @@ jobs:
       - name: Build all platform deliverables
         run: npm run build
 
+      # components/dist is committed (like the token contract) — fail if it
+      # drifts from what the component build actually produces.
+      - name: Verify committed component deliverables match build output
+        run: git diff --exit-code packages/components/dist
+
       - name: Run workspace tests (MCP server unit + client E2E)
         run: npm test
 

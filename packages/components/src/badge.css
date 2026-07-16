@@ -1,0 +1,30 @@
+/* llp-Badge — status labels; semantics carried by color role, not by shade. */
+
+.llp-Badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--llp-space-75);
+  border-radius: var(--llp-radius-full);
+  font-family: var(--llp-font-family-sans);
+  font-weight: var(--llp-font-weight-bold);
+  color: var(--llp-color-static-white-text);
+}
+
+.llp-Badge-label { white-space: nowrap; }
+
+/* sizes */
+.llp-Badge--sizeS { font-size: var(--llp-font-size-50); padding: var(--llp-space-25) var(--llp-space-200); }
+.llp-Badge--sizeM { font-size: var(--llp-font-size-75); padding: var(--llp-space-50) var(--llp-space-200); }
+
+/* variants */
+.llp-Badge--accent { background: var(--llp-color-accent-bg-default); }
+.llp-Badge--informative { background: var(--llp-color-informative-bg-default); }
+.llp-Badge--positive { background: var(--llp-color-positive-bg-default); }
+.llp-Badge--negative { background: var(--llp-color-negative-bg-default); }
+.llp-Badge--neutral { background: var(--llp-color-neutral-bg-default); }
+.llp-Badge--notice {
+  background: var(--llp-color-notice-bg-default);
+  /* notice is a light hue in light theme — dark content keeps contrast
+   * (gap: no static-black-text usage token yet) */
+  color: var(--llp-color-black);
+}
