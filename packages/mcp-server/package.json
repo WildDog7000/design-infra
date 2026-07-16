@@ -1,0 +1,18 @@
+{
+  "name": "@llp/mcp-server",
+  "version": "0.1.0",
+  "description": "LLP design-system MCP server — exposes the token contract as queryable tools for AI coding agents",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "llp-mcp-server": "./server.mjs"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "llp-design-tokens": {
+      "command": "node",
+      "args": ["packages/mcp-server/server.mjs"]
+    }
+  }
+}
