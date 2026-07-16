@@ -1,17 +1,33 @@
 {
-  "name": "@llp/mcp-server",
+  "name": "@llp-design/mcp-server",
   "version": "0.1.0",
   "description": "LLP design-system MCP server — exposes the token contract as queryable tools for AI coding agents",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WildDog7000/design-infra.git",
+    "directory": "packages/mcp-server"
+  },
   "type": "module",
-  "private": true,
   "bin": {
     "llp-mcp-server": "./server.mjs"
+  },
+  "files": [
+    "server.mjs",
+    "lib.mjs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "scripts": {
     "start": "node server.mjs",
     "test": "node --test"
   },
   "dependencies": {
+    "@llp-design/tokens": "^0.1.0",
     "@modelcontextprotocol/sdk": "^1.12.0",
     "zod": "^3.24.0"
   }

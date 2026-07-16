@@ -1,4 +1,4 @@
-# @llp/mcp-server
+# @llp-design/mcp-server
 
 Read-only MCP server exposing the LLP token contract to AI coding agents
 (ADR-0008). Third consumer of the same DTCG source of truth, after the
@@ -17,17 +17,31 @@ actually type.
 
 ## Use it
 
-Claude Code picks the server up automatically from the repo-root `.mcp.json`.
-Manual registration elsewhere:
+**In any other project** (once published to npm — ADR-0009): add to that
+project's `.mcp.json`, or run `claude mcp add`:
 
-```sh
-node packages/mcp-server/server.mjs   # stdio transport
+```json
+{
+  "mcpServers": {
+    "llp-design-tokens": { "command": "npx", "args": ["-y", "@llp-design/mcp-server"] }
+  }
+}
 ```
+
+Claude Desktop: same `command`/`args` under `mcpServers` in
+`claude_desktop_config.json` (Settings → Developer → Edit Config).
+
+The token contract ships inside the `@llp-design/tokens` dependency — no
+checkout of this repo is needed. Contract freshness is pinned to the package
+version by design; see ADR-0009.
+
+**In this repo**: Claude Code picks the server up automatically from the
+repo-root `.mcp.json` (runs `server.mjs` directly against the workspace).
 
 ## Test
 
 ```sh
-npm test --workspace @llp/mcp-server
+npm test --workspace @llp-design/mcp-server
 ```
 
 Unit tests cover the query engine; `server.e2e.test.mjs` spawns the real

@@ -7,10 +7,14 @@
  * property name consumers actually type (--llp-color-accent-bg-default).
  */
 import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
-const TOKENS_ROOT = join(dirname(fileURLToPath(import.meta.url)), '../tokens/tokens');
+// Locate the contract through the @llp-design/tokens dependency: resolves to
+// the workspace symlink during development and to the installed package for
+// npm consumers — the server never needs this repo's checkout.
+const require = createRequire(import.meta.url);
+const TOKENS_ROOT = join(dirname(require.resolve('@llp-design/tokens/package.json')), 'tokens');
 
 // Tier is a property of which contract file a token lives in — mirror build.js.
 const THEME_SOURCES = {

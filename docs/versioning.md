@@ -1,4 +1,4 @@
-# Token 版本政策(@llp/tokens)
+# Token 版本政策(@llp-design/tokens)
 
 消费者升级依赖时只关心一个问题:「这次升级会不会弄坏我?」semver 是回答它的
 协议,但 token 包的「坏」需要自己的定义——本文就是那份定义。
@@ -35,7 +35,7 @@
 ## 发布流程
 
 ```
-npm run release --workspace @llp/tokens
+npm run release --workspace @llp-design/tokens
 ```
 
 脚本依次:校验工作区干净 → 重跑适配器验证无漂移 → 构建 → 对比上一个

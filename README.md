@@ -32,7 +32,7 @@ npm run build          # 构建全部平台产物到 packages/tokens/dist/
 重新从来源生成 token 契约文件(仅在更换/升级来源时需要):
 
 ```bash
-npm run import:spectrum --workspace @llp/tokens
+npm run import:spectrum --workspace @llp-design/tokens
 ```
 
 CI 会校验提交的 `tokens/` 与适配器输出无漂移,并验证构建通过。

@@ -86,8 +86,8 @@ run('npm install --package-lock-only', { stdio: 'pipe' });
 
 // 6. commit + tag
 run(`git add "${pkgPath}" "${changelogPath}" package-lock.json`);
-run(`git commit -m "release: @llp/tokens v${version}"`);
+run(`git commit -m "release: @llp-design/tokens v${version}"`);
 // annotated, not lightweight — `git push --follow-tags` only follows annotated tags
-run(`git tag -a v${version} -m "@llp/tokens v${version}"`);
+run(`git tag -a v${version} -m "@llp-design/tokens v${version}"`);
 
 console.log(`\n✅ v${version} tagged. Publish with:\n   git push origin main --follow-tags`);

@@ -25,7 +25,7 @@ jobs:
 
       - name: Verify tokens match ingestion adapter output
         run: |
-          npm run import:spectrum --workspace @llp/tokens
+          npm run import:spectrum --workspace @llp-design/tokens
           git diff --exit-code packages/tokens/tokens
 
       - name: Build all platform deliverables
