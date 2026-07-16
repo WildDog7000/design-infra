@@ -1,0 +1,122 @@
+/**
+ * Consumer demo stylesheet.
+ *
+ * Contract: components consume ONLY usage-tier tokens (--llp-color-<role>-*)
+ * plus dimension/typography primitives (space/radius/font — these have no
+ * usage tier). No raw color values allowed; CI greps this file for hex/rgb.
+ *
+ * Known contract gap found by this demo: there is no usage-tier token for
+ * "content on accent background" (Spectrum's static-white), so button labels
+ * fall back to the primitive --llp-color-white. Candidate for overrides.json.
+ */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: var(--llp-space-500);
+  background: var(--llp-color-bg-base);
+  color: var(--llp-color-neutral-content-default);
+  font-family: var(--llp-font-family-sans);
+  font-size: var(--llp-font-size-100);
+  transition: background 0.2s, color 0.2s;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--llp-space-300);
+  margin-bottom: var(--llp-space-500);
+}
+
+.heading {
+  margin: 0;
+  font-size: var(--llp-font-size-700);
+  font-weight: var(--llp-font-weight-bold);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--llp-space-300);
+}
+
+.card {
+  background: var(--llp-color-bg-layer-1);
+  border-radius: var(--llp-radius-500);
+  padding: var(--llp-space-400);
+}
+
+.card--layer2 { background: var(--llp-color-bg-layer-2); }
+
+.card__title {
+  margin: 0 0 var(--llp-space-100);
+  font-size: var(--llp-font-size-300);
+  font-weight: var(--llp-font-weight-medium);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--llp-space-200);
+  margin-top: var(--llp-space-300);
+}
+
+.body { color: var(--llp-color-neutral-content-default); }
+.subdued { color: var(--llp-color-neutral-subdued-content-default); }
+.disabled-text { color: var(--llp-color-disabled-content); }
+
+.button {
+  font: inherit;
+  font-weight: var(--llp-font-weight-bold);
+  padding: var(--llp-space-100) var(--llp-space-300);
+  border-radius: var(--llp-radius-800);
+  border: var(--llp-space-25) solid transparent;
+  cursor: pointer;
+}
+
+.button--accent {
+  background: var(--llp-color-accent-bg-default);
+  color: var(--llp-color-white); /* contract gap: no on-accent usage token */
+}
+.button--accent:hover { background: var(--llp-color-accent-bg-hover); }
+.button--accent:active { background: var(--llp-color-accent-bg-down); }
+
+.button:disabled {
+  background: var(--llp-color-disabled-bg);
+  color: var(--llp-color-disabled-content);
+  border-color: var(--llp-color-disabled-border);
+  cursor: not-allowed;
+}
+
+.button--neutral {
+  background: var(--llp-color-bg-layer-1);
+  color: var(--llp-color-neutral-content-default);
+  border-color: var(--llp-color-disabled-border);
+}
+
+.link { color: var(--llp-color-accent-content-default); }
+.link:hover { color: var(--llp-color-accent-content-hover); }
+
+.badge {
+  padding: var(--llp-space-50) var(--llp-space-200);
+  border-radius: var(--llp-radius-800);
+  font-size: var(--llp-font-size-75);
+  font-weight: var(--llp-font-weight-bold);
+  color: var(--llp-color-white); /* same contract gap as buttons */
+}
+
+.badge--negative { background: var(--llp-color-negative-bg-default); }
+.badge--positive { background: var(--llp-color-positive-bg-default); }
+.badge--notice { background: var(--llp-color-notice-bg-default); }
+.badge--informative { background: var(--llp-color-informative-bg-default); }
+
+code {
+  font-family: var(--llp-font-family-code);
+  font-size: var(--llp-font-size-75);
+  background: var(--llp-color-bg-pasteboard);
+  padding: 0 var(--llp-space-75);
+  border-radius: var(--llp-radius-100);
+}

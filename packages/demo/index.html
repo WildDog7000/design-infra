@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LLP Tokens — consumer demo</title>
+  <link rel="stylesheet" href="../tokens/dist/css/tokens.css" />
+  <link rel="stylesheet" href="../tokens/dist/css/tokens.dark.css" />
+  <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+  <header class="header">
+    <div>
+      <h1 class="heading">LLP Tokens</h1>
+      <p class="subdued">Consumer-side validation — every color below resolves from a usage-tier token.</p>
+    </div>
+    <button class="button button--neutral" id="theme-toggle" aria-pressed="false">🌙 Dark</button>
+  </header>
+
+  <main class="board">
+    <section class="card">
+      <h2 class="card__title">Buttons</h2>
+      <p class="subdued">accent-bg-default → hover → down, plus disabled bg/content/border.</p>
+      <div class="row">
+        <button class="button button--accent">Primary action</button>
+        <button class="button button--accent" disabled>Disabled</button>
+        <a class="link" href="#">Accent link</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="card__title">Text hierarchy</h2>
+      <p class="body">Body copy uses <code>neutral-content-default</code>.</p>
+      <p class="subdued">Captions use <code>neutral-subdued-content-default</code>.</p>
+      <p class="disabled-text">Disabled text uses <code>disabled-content</code>.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="card__title">Status</h2>
+      <div class="row">
+        <span class="badge badge--negative">Negative</span>
+        <span class="badge badge--positive">Positive</span>
+        <span class="badge badge--notice">Notice</span>
+        <span class="badge badge--informative">Informative</span>
+      </div>
+    </section>
+
+    <section class="card card--layer2">
+      <h2 class="card__title">Surfaces</h2>
+      <p class="subdued">Page = bg-base · cards = bg-layer-1 · this card = bg-layer-2 on layer-1.</p>
+    </section>
+  </main>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const apply = (dark) => {
+      if (dark) root.dataset.theme = 'dark';
+      else delete root.dataset.theme;
+      toggle.textContent = dark ? '☀️ Light' : '🌙 Dark';
+      toggle.setAttribute('aria-pressed', String(dark));
+    };
+    apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    toggle.addEventListener('click', () => apply(root.dataset.theme !== 'dark'));
+  </script>
+</body>
+</html>
