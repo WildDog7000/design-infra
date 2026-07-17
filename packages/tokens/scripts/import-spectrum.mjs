@@ -98,7 +98,8 @@ const rewriteRef = (value, theme) => {
 // ---------------------------------------------------------------------------
 // 1. primitives/color.{light,dark}.json — curated palette families
 
-const FAMILIES = ['gray', 'blue', 'red', 'green', 'orange'];
+// transparent-black: overlay/shadow scale, added for the Dialog component
+const FAMILIES = ['gray', 'blue', 'red', 'green', 'orange', 'transparent-black'];
 const SINGLES = ['white', 'black'];
 
 for (const [name] of Object.entries(palette)) {

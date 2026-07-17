@@ -1,0 +1,93 @@
+/* llp-Dialog — modal dialog, anatomy and decisions ported from Spectrum:
+ * fixed width steps per size (400/480/640), bold 2px divider under the
+ * heading, right-aligned button group with the primary action last, and a
+ * dimming underlay. Show/hide is consumer logic (toggle the hidden
+ * attribute on the underlay). */
+
+.llp-Underlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--llp-space-400);
+  background: var(--llp-color-transparent-black-500);
+  /* gap: no theme-aware overlay usage token yet — Spectrum dims dark themes
+   * harder (0.44 vs 0.56); fixed at the light density for now */
+}
+
+.llp-Underlay[hidden] { display: none; }
+
+.llp-Dialog {
+  display: flex;
+  flex-direction: column;
+  background: var(--llp-color-bg-layer-2);
+  border-radius: var(--llp-radius-800);
+  box-shadow: 0 var(--llp-space-75) var(--llp-space-500) var(--llp-color-transparent-black-300);
+  padding: var(--llp-space-500);
+  width: 100%;
+  font-family: var(--llp-font-family-sans);
+  color: var(--llp-color-neutral-content-default);
+}
+
+/* Spectrum dialog width steps */
+.llp-Dialog--sizeS { max-width: 400px; }
+.llp-Dialog--sizeM { max-width: 480px; }
+.llp-Dialog--sizeL { max-width: 640px; }
+
+.llp-Dialog-heading {
+  margin: 0;
+  font-size: var(--llp-font-size-300);
+  font-weight: var(--llp-font-weight-bold);
+  padding-right: var(--llp-space-600); /* keep clear of the close button */
+}
+
+/* Spectrum's signature bold rule under the dialog heading */
+.llp-Dialog-divider {
+  border: none;
+  height: var(--llp-space-50);
+  background: var(--llp-color-gray-800);
+  border-radius: var(--llp-radius-full);
+  margin: var(--llp-space-300) 0;
+}
+
+.llp-Dialog-content {
+  font-size: var(--llp-font-size-100);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Dialog-buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--llp-space-200);
+  margin-top: var(--llp-space-500);
+}
+
+/* dismissable variant: close button pinned to the top-right */
+.llp-Dialog { position: relative; }
+
+.llp-Dialog-closeButton {
+  position: absolute;
+  top: var(--llp-space-300);
+  right: var(--llp-space-300);
+  display: grid;
+  place-items: center;
+  width: var(--llp-space-500);
+  height: var(--llp-space-500);
+  border: none;
+  border-radius: var(--llp-radius-full);
+  background: transparent;
+  color: var(--llp-color-neutral-subdued-content-default);
+  font-size: var(--llp-font-size-200);
+  cursor: pointer;
+}
+
+.llp-Dialog-closeButton:hover {
+  background: var(--llp-color-gray-200);
+  color: var(--llp-color-neutral-content-default);
+}
+
+.llp-Dialog-closeButton:focus-visible {
+  /* gap: no color/focus/indicator usage token yet */
+  outline: var(--llp-space-50) solid var(--llp-color-accent-900);
+  outline-offset: var(--llp-space-25);
+}

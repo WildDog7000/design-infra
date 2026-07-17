@@ -56,6 +56,16 @@
       "states": "disabled attribute on the input supported"
     },
     {
+      "name": "Dialog",
+      "slug": "dialog",
+      "cssFile": "src/dialog.css",
+      "description": "Modal dialog for confirmations and short focused tasks. One accent (or negative, if destructive) action, placed last in the button group.",
+      "markup": "<div class=\"llp-Underlay\" hidden><div class=\"llp-Dialog llp-Dialog--sizeM\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"dlg-title\"><button class=\"llp-Dialog-closeButton\" aria-label=\"Close\">✕</button><h2 class=\"llp-Dialog-heading\" id=\"dlg-title\">Delete project?</h2><hr class=\"llp-Dialog-divider\"><div class=\"llp-Dialog-content\">This cannot be undone.</div><div class=\"llp-Dialog-buttonGroup\"><button class=\"llp-Button llp-Button--secondary llp-Button--sizeM\"><span class=\"llp-Button-label\">Cancel</span></button><button class=\"llp-Button llp-Button--negative llp-Button--sizeM\"><span class=\"llp-Button-label\">Delete</span></button></div></div></div>",
+      "variants": {},
+      "sizes": ["llp-Dialog--sizeS", "llp-Dialog--sizeM", "llp-Dialog--sizeL"],
+      "notes": "Show/hide by toggling the hidden attribute on llp-Underlay (small consumer script). The close button is optional (dismissable pattern). Requires the Button component's CSS for the button group."
+    },
+    {
       "name": "Table",
       "slug": "table",
       "cssFile": "src/table.css",

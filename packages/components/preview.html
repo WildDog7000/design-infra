@@ -94,6 +94,31 @@
       </table>
       <div class="llp-Card-footer">Table rows highlight on hover · status via Badge</div>
     </div>
+
+    <!-- dialog pattern -->
+    <div class="llp-Card">
+      <div class="llp-Card-body">
+        <p class="llp-Card-subtitle">Dialog</p>
+        <h2 class="llp-Card-title">Modal confirmation</h2>
+        <div class="row">
+          <button class="llp-Button llp-Button--negative llp-Button--sizeM" id="open-dialog"><span class="llp-Button-label">Delete project…</span></button>
+        </div>
+      </div>
+      <div class="llp-Card-footer">Underlay dims via transparent-black-500 · bold divider under heading · primary action last</div>
+    </div>
+  </div>
+
+  <div class="llp-Underlay" hidden id="demo-underlay">
+    <div class="llp-Dialog llp-Dialog--sizeM" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+      <button class="llp-Dialog-closeButton" aria-label="Close" data-close>✕</button>
+      <h2 class="llp-Dialog-heading" id="dlg-title">Delete project?</h2>
+      <hr class="llp-Dialog-divider" />
+      <div class="llp-Dialog-content">“broken-experiment” and all its data will be permanently removed. This cannot be undone.</div>
+      <div class="llp-Dialog-buttonGroup">
+        <button class="llp-Button llp-Button--secondary llp-Button--sizeM" data-close><span class="llp-Button-label">Cancel</span></button>
+        <button class="llp-Button llp-Button--negative llp-Button--sizeM" data-close><span class="llp-Button-label">Delete</span></button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -107,6 +132,12 @@
     };
     apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
     toggle.addEventListener('click', () => apply(root.dataset.theme !== 'dark'));
+
+    const underlay = document.getElementById('demo-underlay');
+    document.getElementById('open-dialog').addEventListener('click', () => (underlay.hidden = false));
+    underlay.addEventListener('click', (e) => {
+      if (e.target === underlay || e.target.closest('[data-close]')) underlay.hidden = true;
+    });
   </script>
 </body>
 </html>
