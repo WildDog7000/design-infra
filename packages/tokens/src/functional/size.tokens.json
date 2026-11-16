@@ -1,0 +1,156 @@
+{
+  "borderRadius": {
+    "default": {"$type":"dimension","$value":"{borderRadius.medium}"},
+    "full": {"$type":"dimension","$value":{"value":624.9375,"unit":"rem"}},
+    "large": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}},
+    "medium": {"$type":"dimension","$value":{"value":0.375,"unit":"rem"}},
+    "small": {"$type":"dimension","$value":{"value":0.1875,"unit":"rem"}}
+  },
+  "borderWidth": {
+    "default": {"$type":"dimension","$value":"{borderWidth.thin}"},
+    "thick": {"$type":"dimension","$value":{"value":0.125,"unit":"rem"}},
+    "thicker": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+    "thin": {"$type":"dimension","$value":{"value":0.0625,"unit":"rem"}}
+  },
+  "breakpoint": {
+    "large": {"$type":"dimension","$value":{"value":63.25,"unit":"rem"}},
+    "medium": {"$type":"dimension","$value":{"value":48,"unit":"rem"}},
+    "small": {"$type":"dimension","$value":{"value":34,"unit":"rem"}},
+    "xlarge": {"$type":"dimension","$value":{"value":80,"unit":"rem"}},
+    "xsmall": {"$type":"dimension","$value":{"value":20,"unit":"rem"}},
+    "xxlarge": {"$type":"dimension","$value":{"value":87.5,"unit":"rem"}}
+  },
+  "control": {
+    "large": {
+      "gap": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+      "paddingBlock": {"$type":"dimension","$value":{"value":0.625,"unit":"rem"}},
+      "paddingInline": {
+        "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "normal": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+      },
+      "size": {"$type":"dimension","$value":{"value":2.5,"unit":"rem"}}
+    },
+    "medium": {
+      "gap": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+      "paddingBlock": {"$type":"dimension","$value":{"value":0.375,"unit":"rem"}},
+      "paddingInline": {
+        "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "normal": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+      },
+      "size": {"$type":"dimension","$value":{"value":2,"unit":"rem"}}
+    },
+    "minTarget": {
+      "coarse": {"$type":"dimension","$value":{"value":2.75,"unit":"rem"}},
+      "fine": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+    },
+    "small": {
+      "gap": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+      "paddingBlock": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+      "paddingInline": {
+        "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "normal": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+      },
+      "size": {"$type":"dimension","$value":{"value":1.75,"unit":"rem"}}
+    },
+    "xlarge": {
+      "gap": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+      "paddingBlock": {"$type":"dimension","$value":{"value":0.875,"unit":"rem"}},
+      "paddingInline": {
+        "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "normal": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+      },
+      "size": {"$type":"dimension","$value":{"value":3,"unit":"rem"}}
+    },
+    "xsmall": {
+      "gap": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+      "paddingBlock": {"$type":"dimension","$value":{"value":0.125,"unit":"rem"}},
+      "paddingInline": {
+        "condensed": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+        "normal": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}}
+      },
+      "size": {"$type":"dimension","$value":{"value":1.5,"unit":"rem"}}
+    }
+  },
+  "controlStack": {
+    "large": {
+      "gap": {
+        "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}}
+      }
+    },
+    "medium": {
+      "gap": {
+        "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}}
+      }
+    },
+    "small": {
+      "gap": {
+        "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+        "spacious": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+      }
+    }
+  },
+  "overlay": {
+    "borderRadius": {"$type":"dimension","$value":{"value":0.375,"unit":"rem"}},
+    "height": {
+      "large": {"$type":"dimension","$value":{"value":27,"unit":"rem"}},
+      "medium": {"$type":"dimension","$value":{"value":20,"unit":"rem"}},
+      "small": {"$type":"dimension","$value":{"value":16,"unit":"rem"}},
+      "xlarge": {"$type":"dimension","$value":{"value":37.5,"unit":"rem"}}
+    },
+    "offset": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+    "padding": {
+      "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+      "normal": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+    },
+    "paddingBlock": {
+      "condensed": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+      "normal": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}}
+    },
+    "width": {
+      "large": {"$type":"dimension","$value":{"value":40,"unit":"rem"}},
+      "medium": {"$type":"dimension","$value":{"value":30,"unit":"rem"}},
+      "small": {"$type":"dimension","$value":{"value":20,"unit":"rem"}},
+      "xlarge": {"$type":"dimension","$value":{"value":60,"unit":"rem"}},
+      "xsmall": {"$type":"dimension","$value":{"value":12,"unit":"rem"}}
+    }
+  },
+  "spinner": {
+    "size": {
+      "large": {"$type":"dimension","$value":{"value":4,"unit":"rem"}},
+      "medium": {"$type":"dimension","$value":{"value":2,"unit":"rem"}},
+      "small": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+    },
+    "strokeWidth": {
+      "default": {"$type":"dimension","$value":{"value":0.125,"unit":"rem"}}
+    }
+  },
+  "stack": {
+    "gap": {
+      "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+      "normal": {"$type":"dimension","$value":{"value":1,"unit":"rem"}},
+      "spacious": {"$type":"dimension","$value":{"value":1.5,"unit":"rem"}}
+    },
+    "padding": {
+      "condensed": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+      "normal": {"$type":"dimension","$value":{"value":1,"unit":"rem"}},
+      "spacious": {"$type":"dimension","$value":{"value":1.5,"unit":"rem"}}
+    }
+  },
+  "zIndex": {
+    "behind": {"$type":"number","$value":-1},
+    "default": {"$type":"number","$value":0},
+    "dropdown": {"$type":"number","$value":200},
+    "modal": {"$type":"number","$value":400},
+    "overlay": {"$type":"number","$value":300},
+    "popover": {"$type":"number","$value":500},
+    "skipLink": {"$type":"number","$value":600},
+    "sticky": {"$type":"number","$value":100}
+  }
+}

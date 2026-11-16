@@ -1,0 +1,10 @@
+{
+  "space": {
+    "lg": {"$type":"dimension","$value":{"value":1,"unit":"rem"}},
+    "md": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}},
+    "sm": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+    "xl": {"$type":"dimension","$value":{"value":1.5,"unit":"rem"}},
+    "xs": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+    "xxs": {"$type":"dimension","$value":{"value":0.125,"unit":"rem"}}
+  }
+}
