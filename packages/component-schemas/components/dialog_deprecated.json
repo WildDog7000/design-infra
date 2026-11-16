@@ -1,5 +1,5 @@
 {
-  "schema": "lima.component/1",
+  "$schema": "../schema/component.schema.json",
   "id": "dialog_deprecated",
   "name": "Dialog",
   "importPath": "@lima-design/react/deprecated",

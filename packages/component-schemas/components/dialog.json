@@ -1,5 +1,5 @@
 {
-  "schema": "lima.component/1",
+  "$schema": "../schema/component.schema.json",
   "id": "dialog",
   "name": "Dialog",
   "importPath": "@lima-design/react",

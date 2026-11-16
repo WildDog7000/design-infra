@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:lima-design:schema:component:1.0.0",
+  "title": "Lima component schema",
+  "description": "The format of a Lima component schema file: the public API of one React component, as data. Format version 1.0.0.",
+  "type": "object",
+  "required": ["id", "name", "importPath", "status", "props", "subcomponents"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path or identifier of this format."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$",
+      "description": "Stable identifier, snake_case. Equals the file name without extension."
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]*$",
+      "description": "The exported React component name."
+    },
+    "importPath": {
+      "type": "string",
+      "pattern": "^@lima-design/react(/(experimental|deprecated))?$",
+      "description": "The module the component is imported from. The entry point reflects lifecycle: experimental APIs and deprecated components have their own."
+    },
+    "status": {
+      "enum": ["draft", "alpha", "beta", "stable", "deprecated"],
+      "description": "Lifecycle status of the component."
+    },
+    "description": {
+      "type": "string",
+      "description": "What the component is for, in one or two sentences."
+    },
+    "passthroughElement": {
+      "type": "string",
+      "description": "The HTML element whose attributes the component also accepts."
+    },
+    "props": { "$ref": "#/$defs/props" },
+    "subcomponents": {
+      "type": "array",
+      "description": "Parts rendered inside the component, such as Dialog.Header.",
+      "items": {
+        "type": "object",
+        "required": ["name", "props"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9]*(\\.[A-Z][A-Za-z0-9]*)+$",
+            "description": "Dotted name, starting with the parent component's name."
+          },
+          "description": { "type": "string" },
+          "passthroughElement": { "type": "string" },
+          "props": { "$ref": "#/$defs/props" }
+        }
+      }
+    },
+    "types": {
+      "type": "array",
+      "description": "Named object types that appear in prop types. Not renderable.",
+      "items": {
+        "type": "object",
+        "required": ["name", "props"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*$" },
+          "description": { "type": "string" },
+          "props": { "$ref": "#/$defs/props" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "props": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/prop" }
+    },
+    "prop": {
+      "type": "object",
+      "required": ["name", "type", "required"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The TypeScript type of the prop, on one line."
+        },
+        "required": { "type": "boolean" },
+        "defaultValue": {
+          "type": "string",
+          "description": "The default, written as it would appear in code."
+        },
+        "deprecated": {
+          "type": "boolean",
+          "description": "True when the prop still works but must not be used in new code."
+        },
+        "description": { "type": "string" }
+      }
+    }
+  }
+}
