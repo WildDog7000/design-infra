@@ -1,0 +1,64 @@
+{
+  "schema": "lima.intent-levels/1",
+  "about": "Every field of the contract belongs to exactly one intent level. A level's view of the contract = its own fields + all lower levels. The difference between two levels is therefore a known set of fields.",
+  "levels": [
+    {
+      "id": "structure",
+      "summary": "Names, types, values, references, props signatures, lifecycle status. Everything a deterministic gate (lint, type-check) can verify. Always present; the baseline of every experiment."
+    },
+    {
+      "id": "description",
+      "summary": "One-line statements of role: what a token or prop is for."
+    },
+    {
+      "id": "rules",
+      "summary": "Usage tags, do/don't rules, pairings, when to use and when not to, accessibility requirements."
+    },
+    {
+      "id": "examples",
+      "summary": "Curated positive examples, composition recipes, anti-patterns."
+    }
+  ],
+  "fields": {
+    "token": {
+      "name": "structure",
+      "cssVar": "structure",
+      "customMedia": "structure",
+      "path": "structure",
+      "type": "structure",
+      "tier": "structure",
+      "group": "structure",
+      "condition": "structure",
+      "value": "structure",
+      "alias": "structure",
+      "refs": "structure",
+      "modes": "structure",
+      "description": "description",
+      "usage": "rules",
+      "rules": "rules"
+    },
+    "component": {
+      "schema": "structure",
+      "id": "structure",
+      "name": "structure",
+      "importPath": "structure",
+      "status": "structure",
+      "passthroughElement": "structure",
+      "props": "structure",
+      "subcomponents": "structure",
+      "types": "structure",
+      "description": "description",
+      "guidelines": "rules",
+      "accessibility": "rules",
+      "examples": "examples"
+    },
+    "prop": {
+      "name": "structure",
+      "type": "structure",
+      "required": "structure",
+      "defaultValue": "structure",
+      "deprecated": "structure",
+      "description": "description"
+    }
+  }
+}

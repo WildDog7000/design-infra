@@ -1,55 +1,83 @@
-# LLP Design Infrastructure
+# Lima Design System
 
-把设计系统当作**基础设施**来建设的实践项目:一条从设计决策到多平台交付的自动化管道,以及让人和 AI agent 都能消费设计系统的接口层。
+一个实践项目:把 enterprise 设计系统做成 **agent 可消费、可度量** 的形态——
+机读契约、MCP server,以及衡量"哪些信息在控制生成漂移"的评测。
 
-## 为什么
+> 这是重建中的 `lima` 分支。旧实现(LLP)归档在分支 `archive/llp-spectrum-v0`。
 
-设计系统的规模化瓶颈通常不在组件和规范本身,而在它们的**生产、分发、消费、度量**方式:色值靠人肉搬运、设计与代码各自漂移、下游无从知道"该用哪个 token"。本仓库把这些环节工程化——每个关键决策记录在 [docs/adr/](docs/adr/) 中。
-
-## 架构
+## 现在有什么
 
 ```
-值的来源(可替换)              管道契约                    平台交付物
-┌─────────────────┐      ┌──────────────────┐      ┌─────────────────────┐
-│ @adobe/spectrum- │      │  tokens/ (DTCG)  │      │ dist/css  CSS 变量   │
-│ tokens (占位)    ├──①──▶│  primitives/     ├──②──▶│ dist/ts   TS 常量    │
-│ …future:         │      │  semantic/       │      │ dist/json 机读 JSON  │
-│ Airtable/公式/    │      │  usage/          │      │ …future: Figma sync │
-│ Figma            │      │  (light + dark)  │      │ MCP server          │
-└─────────────────┘      └──────────────────┘      └─────────────────────┘
-   ① 摄入适配器 scripts/import-spectrum.mjs   ② Style Dictionary build.js
+packages/contract/
+  tokens/               693 个 token,light / dark 两个模式,一行一个
+  components/           10 个组件的 API 签名
+  intent-levels.json    每个字段属于哪个意图级别
+  lib/contract.mjs      loadContract({ level }):按级别读取契约
+  scripts/validate.mjs  校验:形状、命名、引用、取值一致性、字段分级
 ```
 
-三层 token 结构(ADR-0003):**primitives**(原始色板,按主题分值)→ **semantic**(主题无关别名,如 `accent.800 → blue.800`)→ **usage**(消费方使用的角色,如 `color.bg.base`)。
+契约文件是编写源,不是生成物;没有构建步骤。
 
-## 快速开始
+## 契约长什么样
+
+```jsonc
+// tokens/theme.json 里的一行
+{ "name": "control-fgColor-placeholder", "cssVar": "--lima-control-fgColor-placeholder",
+  "path": ["control", "fgColor", "placeholder"], "type": "color", "tier": "functional",
+  "group": "color/control",
+  "modes": { "light": { "value": "#59636e", "alias": "fgColor-muted" },
+             "dark":  { "value": "#9198a1", "alias": "fgColor-muted" } } }
+```
+
+```jsonc
+// components/button.json 的一部分
+{ "id": "button", "name": "Button", "importPath": "@lima-design/react", "status": "alpha",
+  "props": [ { "name": "variant", "required": false, "defaultValue": "'default'",
+               "type": "'default' | 'primary' | 'danger' | 'invisible' | 'link'" } ] }
+```
+
+## 意图分级
+
+契约里的每个字段只属于一个级别;消费方按级别读取,只拿到该级别及以下的字段(ADR-0013):
+
+| 级别 | 内容 | 数据现状 |
+|---|---|---|
+| `structure` | 名字、类型、值、引用关系、props 签名、生命周期状态 | ✅ 已有 |
+| `description` | 一句话说明 | 待编写 |
+| `rules` | 用途、规则、配对、无障碍要求 | 待编写 |
+| `examples` | 正例、组合配方、反例 | 待编写 |
+
+`structure` 级是门禁(lint、类型检查)的数据来源,也是所有评测对照组的底座。
+
+## 使用
 
 ```bash
-npm install
-npm run build          # 构建全部平台产物到 packages/tokens/dist/
+npm ci
+npm run validate
+npm test
 ```
 
-重新从来源生成 token 契约文件(仅在更换/升级来源时需要):
-
-```bash
-npm run import:spectrum --workspace @llp-design/tokens
+```js
+import { loadContract } from '@lima-design/contract';
+const { tokens, components } = loadContract({ level: 'structure' });
 ```
 
-CI 会校验提交的 `tokens/` 与适配器输出无漂移,并验证构建通过。
-
-## 架构决策记录
+## 架构决策
 
 | ADR | 决策 |
 |---|---|
-| [0001](docs/adr/0001-dtcg-json-as-pipeline-contract.md) | 以 W3C DTCG JSON 作为管道契约 |
-| [0002](docs/adr/0002-ingestion-adapter-pattern.md) | 值的来源通过摄入适配器隔离 |
-| [0003](docs/adr/0003-theming-at-primitive-layer.md) | 主题化发生在 primitive 层 |
-| [0004](docs/adr/0004-computation-at-build-time.md) | 派生计算发生在构建时 |
+| [0012](docs/adr/0012-lima-rebuild-as-independent-system.md) | 重建为 Lima:独立项目,契约数据为自有源 |
+| [0013](docs/adr/0013-intent-levels-and-gate-eval-split.md) | 契约按意图分级;确定性可判的归门禁,不进评测 |
+| 0001–0011 | 旧实现(LLP)的决策记录,保留为历史 |
 
 ## 路线图
 
-- [x] **Phase 1 — Token 管道**:DTCG 源 → Style Dictionary → CSS/TS/JSON,双主题,CI 门禁
-- [ ] **Phase 1.5 — 公式化来源**:以"基准值+公式"配置替换占位值(OKLCH 色彩推导)
-- [ ] **Phase 2 — Figma 同步**:token ↔ Figma Variables / Text Styles
-- [ ] **Phase 3 — MCP server**:让 AI coding agent 查询 token、组件 API 与用法规范
-- [ ] **Phase 4 — 门禁与度量**:design lint、adoption 统计
+- [x] **契约,structure 级** token 与组件签名、分级机制、校验
+- [ ] **消费端样例** React 应用与 `@lima-design/react` 的可运行实现
+- [ ] **MCP server** 先接 structure 级
+- [ ] **更高意图级别** description / rules / examples 的数据
+- [ ] **门禁** lint 与校验工具
+- [ ] **评测** 任务 × 级别 × 多次运行
+- [ ] **远程分发与版本治理**,切换 `main`
+
+第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

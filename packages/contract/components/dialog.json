@@ -1,0 +1,154 @@
+{
+  "schema": "lima.component/1",
+  "id": "dialog",
+  "name": "Dialog",
+  "importPath": "@lima-design/react",
+  "status": "alpha",
+  "props": [
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": false
+    },
+    {
+      "name": "subtitle",
+      "type": "React.ReactNode",
+      "required": false
+    },
+    {
+      "name": "renderHeader",
+      "type": "React.FunctionComponent<React.PropsWithChildren<DialogHeaderProps>>",
+      "required": false
+    },
+    {
+      "name": "renderBody",
+      "type": "React.FunctionComponent<React.PropsWithChildren<DialogProps>>",
+      "required": false
+    },
+    {
+      "name": "renderFooter",
+      "type": "React.FunctionComponent<React.PropsWithChildren<DialogProps>>",
+      "required": false
+    },
+    {
+      "name": "footerButtons",
+      "type": "DialogButtonProps[]",
+      "required": false
+    },
+    {
+      "name": "onClose",
+      "type": "(gesture: 'close-button' | 'escape') => void",
+      "required": false
+    },
+    {
+      "name": "role",
+      "type": "'dialog' | 'alertdialog'",
+      "required": false
+    },
+    {
+      "name": "width",
+      "type": "'small' | 'medium' | 'large' | 'xlarge' | string | number",
+      "required": false
+    },
+    {
+      "name": "height",
+      "type": "'small' | 'large' | 'auto'",
+      "required": false
+    },
+    {
+      "name": "returnFocusRef",
+      "type": "React.RefObject<HTMLElement>",
+      "required": false
+    },
+    {
+      "name": "initialFocusRef",
+      "type": "React.RefObject<HTMLElement>",
+      "required": false
+    },
+    {
+      "name": "position",
+      "type": "'center' | 'left' | 'right' | { narrow: 'center' | 'left' | 'right' | 'bottom' | 'fullscreen', regular: 'center' | 'left' | 'right' | 'bottom' | 'fullscreen', wide: 'center' | 'left' | 'right' | 'bottom' | 'fullscreen' }",
+      "required": false
+    },
+    {
+      "name": "align",
+      "type": "'top' | 'center' | 'bottom'",
+      "required": false
+    },
+    {
+      "name": "className",
+      "type": "string | undefined",
+      "required": false
+    },
+    {
+      "name": "style",
+      "type": "React.CSSProperties | undefined",
+      "required": false
+    }
+  ],
+  "subcomponents": [
+    {
+      "name": "Dialog.Body",
+      "props": []
+    },
+    {
+      "name": "Dialog.Buttons",
+      "props": [
+        {
+          "name": "buttons",
+          "type": "DialogButtonProps[] (see table below)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Dialog.CloseButton",
+      "props": [
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Dialog.Footer",
+      "props": []
+    },
+    {
+      "name": "Dialog.Header",
+      "props": []
+    },
+    {
+      "name": "Dialog.Title",
+      "props": []
+    }
+  ],
+  "types": [
+    {
+      "name": "DialogButtonProps",
+      "props": [
+        {
+          "name": "buttonType",
+          "type": "'default' | 'danger' | 'primary' | 'normal'",
+          "required": false
+        },
+        {
+          "name": "content",
+          "type": "React.ReactNode",
+          "required": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "ref",
+          "type": "React.RefObject<HTMLButtonElement>",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

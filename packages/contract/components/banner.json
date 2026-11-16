@@ -1,0 +1,113 @@
+{
+  "schema": "lima.component/1",
+  "id": "banner",
+  "name": "Banner",
+  "importPath": "@lima-design/react",
+  "status": "alpha",
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "required": false
+    },
+    {
+      "name": "hideTitle",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "icon",
+      "type": "React.ReactNode",
+      "required": false,
+      "deprecated": true
+    },
+    {
+      "name": "leadingVisual",
+      "type": "React.ReactNode",
+      "required": false
+    },
+    {
+      "name": "onDismiss",
+      "type": "() => void",
+      "required": false
+    },
+    {
+      "name": "primaryAction",
+      "type": "React.ReactNode",
+      "required": false
+    },
+    {
+      "name": "secondaryAction",
+      "type": "React.ReactNode",
+      "required": false
+    },
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "required": false
+    },
+    {
+      "name": "variant",
+      "type": "'critical' | 'info' | 'success' | 'upsell' | 'warning'",
+      "required": false
+    },
+    {
+      "name": "layout",
+      "type": "'default' | 'compact'",
+      "required": false
+    },
+    {
+      "name": "actionsLayout",
+      "type": "'default' | 'inline' | 'stacked'",
+      "required": false
+    },
+    {
+      "name": "flush",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false"
+    }
+  ],
+  "subcomponents": [
+    {
+      "name": "Banner.Title",
+      "props": [
+        {
+          "name": "as",
+          "type": "'h2' | 'h3' | 'h4' | 'h5' | 'h6'",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Banner.Description",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Banner.PrimaryAction",
+      "passthroughElement": "Button",
+      "props": []
+    },
+    {
+      "name": "Banner.SecondaryAction",
+      "passthroughElement": "Button",
+      "props": []
+    }
+  ]
+}
