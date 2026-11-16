@@ -1,0 +1,27 @@
+{
+  "name": "@lima-design/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lima Design System tokens \u2014 DTCG 2025.10 token files, a resolver document for theme and pointer contexts, and a small library to read them",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./lima.resolver.json": "./lima.resolver.json",
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "lima.resolver.json",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@terrazzo/parser": "^2.10.0"
+  }
+}

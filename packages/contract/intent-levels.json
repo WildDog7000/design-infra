@@ -8,7 +8,7 @@
     },
     {
       "id": "description",
-      "summary": "One-line statements of role: what a token or prop is for."
+      "summary": "One-line statements of role: what a token, component or prop is for."
     },
     {
       "id": "rules",
@@ -23,22 +23,20 @@
     "token": {
       "name": "structure",
       "cssVar": "structure",
-      "customMedia": "structure",
       "path": "structure",
       "type": "structure",
       "tier": "structure",
-      "group": "structure",
-      "condition": "structure",
+      "deprecated": "structure",
       "value": "structure",
       "alias": "structure",
       "refs": "structure",
-      "modes": "structure",
+      "modifier": "structure",
+      "contexts": "structure",
       "description": "description",
       "usage": "rules",
       "rules": "rules"
     },
     "component": {
-      "schema": "structure",
       "id": "structure",
       "name": "structure",
       "importPath": "structure",
@@ -47,10 +45,13 @@
       "props": "structure",
       "subcomponents": "structure",
       "types": "structure",
-      "description": "description",
-      "guidelines": "rules",
-      "accessibility": "rules",
-      "examples": "examples"
+      "description": "description"
+    },
+    "part": {
+      "name": "structure",
+      "passthroughElement": "structure",
+      "props": "structure",
+      "description": "description"
     },
     "prop": {
       "name": "structure",

@@ -1,0 +1,27 @@
+{
+  "name": "@lima-design/component-schemas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lima Design System component schemas — the public API of each component as data, with a versioned format",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./schema/component.schema.json": "./schema/component.schema.json",
+    "./components/*": "./components/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "schema",
+    "components",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}

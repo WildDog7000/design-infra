@@ -1,0 +1,49 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "Lima Design System",
+  "version": "2025.10",
+  "description": "How the Lima token files combine. Sets are always applied; each modifier contributes exactly one of its contexts.",
+  "sets": {
+    "base": {
+      "description": "Raw scales: sizes, type scale, durations and easings. Not for direct use in product code.",
+      "sources": [
+        { "$ref": "src/base/motion.tokens.json" },
+        { "$ref": "src/base/size.tokens.json" },
+        { "$ref": "src/base/typography.tokens.json" }
+      ]
+    },
+    "functional": {
+      "description": "Tokens named for what they are used for. Independent of color mode and input device.",
+      "sources": [
+        { "$ref": "src/functional/motion.tokens.json" },
+        { "$ref": "src/functional/size.tokens.json" },
+        { "$ref": "src/functional/spacing.tokens.json" },
+        { "$ref": "src/functional/typography.tokens.json" }
+      ]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "description": "Color mode. Every color, shadow and border token is defined once per context.",
+      "contexts": {
+        "light": [{ "$ref": "src/theme/light.tokens.json" }],
+        "dark": [{ "$ref": "src/theme/dark.tokens.json" }]
+      },
+      "default": "light"
+    },
+    "pointer": {
+      "description": "Primary input device. Touch targets and control spacing grow for coarse pointers.",
+      "contexts": {
+        "fine": [{ "$ref": "src/pointer/fine.tokens.json" }],
+        "coarse": [{ "$ref": "src/pointer/coarse.tokens.json" }]
+      },
+      "default": "fine"
+    }
+  },
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/sets/functional" },
+    { "$ref": "#/modifiers/theme" },
+    { "$ref": "#/modifiers/pointer" }
+  ]
+}

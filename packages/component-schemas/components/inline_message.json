@@ -1,0 +1,26 @@
+{
+  "$schema": "../schema/component.schema.json",
+  "id": "inline_message",
+  "name": "InlineMessage",
+  "importPath": "@lima-design/react/experimental",
+  "status": "alpha",
+  "props": [
+    {
+      "name": "size",
+      "type": "'small' | 'medium'",
+      "required": false,
+      "defaultValue": "'medium'"
+    },
+    {
+      "name": "variant",
+      "type": "'critical' | 'success' | 'unvailable' | 'warning'",
+      "required": true
+    },
+    {
+      "name": "leadingVisual",
+      "type": "React.ElementType | React.ReactNode",
+      "required": false
+    }
+  ],
+  "subcomponents": []
+}

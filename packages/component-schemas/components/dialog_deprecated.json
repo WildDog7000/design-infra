@@ -1,0 +1,55 @@
+{
+  "$schema": "../schema/component.schema.json",
+  "id": "dialog_deprecated",
+  "name": "Dialog",
+  "importPath": "@lima-design/react/deprecated",
+  "status": "deprecated",
+  "props": [
+    {
+      "name": "isOpen",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "onDismiss",
+      "type": "() => void",
+      "required": false
+    },
+    {
+      "name": "returnFocusRef",
+      "type": "React.RefObject<HTMLElement>",
+      "required": false
+    },
+    {
+      "name": "initialFocusRef",
+      "type": "React.RefObject<HTMLElement>",
+      "required": false
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "narrow",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "wide",
+      "type": "boolean",
+      "required": false
+    }
+  ],
+  "subcomponents": [
+    {
+      "name": "Dialog.Header",
+      "props": []
+    }
+  ]
+}

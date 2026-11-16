@@ -1,55 +1,53 @@
 # Lima Design System
 
-一个实践项目:把 enterprise 设计系统做成 **agent 可消费、可度量** 的形态——
-机读契约、MCP server,以及衡量"哪些信息在控制生成漂移"的评测。
+A design system built to be consumed by coding agents — and to measure whether
+that consumption works: a machine-readable contract, an MCP server that serves
+it, and evals that show which information keeps generated UI from drifting.
 
-> 这是重建中的 `lima` 分支。旧实现(LLP)归档在分支 `archive/llp-spectrum-v0`。
+> This is the `lima` branch, where Lima is being built. An earlier prototype is
+> kept on the branch `archive/llp-spectrum-v0`.
 
-## 现在有什么
+## Packages
 
-```
-packages/contract/
-  tokens/               693 个 token,light / dark 两个模式,一行一个
-  components/           10 个组件的 API 签名
-  intent-levels.json    每个字段属于哪个意图级别
-  lib/contract.mjs      loadContract({ level }):按级别读取契约
-  scripts/validate.mjs  校验:形状、命名、引用、取值一致性、字段分级
-```
-
-契约文件是编写源,不是生成物;没有构建步骤。
-
-## 契约长什么样
-
-```jsonc
-// tokens/theme.json 里的一行
-{ "name": "control-fgColor-placeholder", "cssVar": "--lima-control-fgColor-placeholder",
-  "path": ["control", "fgColor", "placeholder"], "type": "color", "tier": "functional",
-  "group": "color/control",
-  "modes": { "light": { "value": "#59636e", "alias": "fgColor-muted" },
-             "dark":  { "value": "#9198a1", "alias": "fgColor-muted" } } }
-```
-
-```jsonc
-// components/button.json 的一部分
-{ "id": "button", "name": "Button", "importPath": "@lima-design/react", "status": "alpha",
-  "props": [ { "name": "variant", "required": false, "defaultValue": "'default'",
-               "type": "'default' | 'primary' | 'danger' | 'invisible' | 'link'" } ] }
-```
-
-## 意图分级
-
-契约里的每个字段只属于一个级别;消费方按级别读取,只拿到该级别及以下的字段(ADR-0013):
-
-| 级别 | 内容 | 数据现状 |
+| Package | What it is | Version |
 |---|---|---|
-| `structure` | 名字、类型、值、引用关系、props 签名、生命周期状态 | ✅ 已有 |
-| `description` | 一句话说明 | 待编写 |
-| `rules` | 用途、规则、配对、无障碍要求 | 待编写 |
-| `examples` | 正例、组合配方、反例 | 待编写 |
+| [`@lima-design/tokens`](packages/tokens) | Design tokens in DTCG 2025.10, with a resolver document for `theme` (light, dark) and `pointer` (fine, coarse) | 0.1.0 |
+| [`@lima-design/component-schemas`](packages/component-schemas) | The public API of each component as data, in a versioned format | 0.1.0 |
+| [`@lima-design/contract`](packages/contract) | Both of the above, readable at a chosen level of design intent | 0.2.0 |
 
-`structure` 级是门禁(lint、类型检查)的数据来源,也是所有评测对照组的底座。
+The two data packages are independent and versioned separately. The contract
+depends on them; they do not depend on it.
 
-## 使用
+```
+packages/
+  tokens/
+    lima.resolver.json        how the token files combine
+    src/**/*.tokens.json      675 tokens, one per line
+  component-schemas/
+    schema/component.schema.json   the format (JSON Schema)
+    components/*.json              10 components
+  contract/
+    intent-levels.json        which field belongs to which level of intent
+    lib/contract.mjs          loadContract({ level })
+```
+
+## Intent levels
+
+Every field of the contract belongs to one level. A consumer asks for a level
+and receives that level and everything below it
+([ADR-0002](docs/adr/0002-intent-levels-and-gates-vs-evals.md)).
+
+| Level | Content | Data today |
+|---|---|---|
+| `structure` | names, types, values, references, props signatures, lifecycle status | present |
+| `description` | one line on what a token, component or prop is for | to be authored |
+| `rules` | usage, do/don't, pairings, accessibility requirements | to be authored |
+| `examples` | examples, composition recipes, anti-patterns | to be authored |
+
+The `structure` level is what deterministic gates (lint, type-check) verify, and
+the baseline every eval arm shares.
+
+## Use
 
 ```bash
 npm ci
@@ -59,25 +57,25 @@ npm test
 
 ```js
 import { loadContract } from '@lima-design/contract';
-const { tokens, components } = loadContract({ level: 'structure' });
+
+const { tokens, components, versions } = loadContract({ level: 'structure' });
 ```
 
-## 架构决策
+## Decisions
 
-| ADR | 决策 |
+| ADR | Decision |
 |---|---|
-| [0012](docs/adr/0012-lima-rebuild-as-independent-system.md) | 重建为 Lima:独立项目,契约数据为自有源 |
-| [0013](docs/adr/0013-intent-levels-and-gate-eval-split.md) | 契约按意图分级;确定性可判的归门禁,不进评测 |
-| 0001–0011 | 旧实现(LLP)的决策记录,保留为历史 |
+| [0001](docs/adr/0001-contract-first-design-system.md) | Lima is a contract-first design system |
+| [0002](docs/adr/0002-intent-levels-and-gates-vs-evals.md) | Intent levels; deterministic checks are gates, not evals |
+| [0003](docs/adr/0003-tokens-in-dtcg-with-a-resolver.md) | Tokens are authored in DTCG 2025.10 with a resolver document |
+| [0004](docs/adr/0004-component-schemas-as-an-independent-package.md) | Component schemas are an independent, versioned package |
 
-## 路线图
+## Roadmap
 
-- [x] **契约,structure 级** token 与组件签名、分级机制、校验
-- [ ] **消费端样例** React 应用与 `@lima-design/react` 的可运行实现
-- [ ] **MCP server** 先接 structure 级
-- [ ] **更高意图级别** description / rules / examples 的数据
-- [ ] **门禁** lint 与校验工具
-- [ ] **评测** 任务 × 级别 × 多次运行
-- [ ] **远程分发与版本治理**,切换 `main`
-
-第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+- [x] **Contract, structure level** — tokens, component schemas, intent-level mechanism, validation
+- [ ] **Consumer app** — a React app and a runnable `@lima-design/react`
+- [ ] **MCP server** — serving the structure level first
+- [ ] **Higher intent levels** — description, rules, examples
+- [ ] **Gates** — lint rules and a validation tool
+- [ ] **Evals** — task × level × repeated runs
+- [ ] **Distribution and release** — remote server, versioned releases, cutover to `main`

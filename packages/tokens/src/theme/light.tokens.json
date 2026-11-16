@@ -1,0 +1,773 @@
+{
+  "bgColor": {
+    "accent": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0353,0.4118,0.8549],"hex":"#0969da"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8667,0.9569,1],"hex":"#ddf4ff"}}
+    },
+    "attention": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6039,0.4039,0],"hex":"#9a6700"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9725,0.7725],"hex":"#fff8c5"}}
+    },
+    "black": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"hex":"#1f2328"}},
+    "danger": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8118,0.1333,0.1804],"hex":"#cf222e"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9216,0.9137],"hex":"#ffebe9"}}
+    },
+    "default": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"hex":"#ffffff"}},
+    "disabled": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9373,0.949,0.9608],"hex":"#eff2f5"}},
+    "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"hex":"#25292e"}},
+    "inset": {"$type":"color","$value":"{bgColor.muted}"},
+    "inverse": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"hex":"#25292e"}},
+    "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9647,0.9725,0.9804],"hex":"#f6f8fa"}},
+    "neutral": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.349,0.3882,0.4314],"hex":"#59636e"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5451,0.5961],"alpha":0.1216,"hex":"#818b98"}}
+    },
+    "severe": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7373,0.298,0],"hex":"#bc4c00"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9451,0.898],"hex":"#fff1e5"}}
+    },
+    "success": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1216,0.5333,0.2392],"hex":"#1f883d"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8549,0.9843,0.8824],"hex":"#dafbe1"}}
+    },
+    "transparent": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"alpha":0,"hex":"#ffffff"}},
+    "white": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"hex":"#ffffff"}}
+  },
+  "border": {
+    "accent": {
+      "emphasis": {"$type":"border","$value":{"color":"{borderColor.accent.emphasis}","width":"{borderWidth.default}","style":"solid"}},
+      "muted": {"$type":"border","$value":{"color":"{borderColor.accent.muted}","width":"{borderWidth.default}","style":"solid"}}
+    },
+    "attention": {
+      "emphasis": {"$type":"border","$value":{"color":"{borderColor.attention.emphasis}","width":"{borderWidth.default}","style":"solid"}},
+      "muted": {"$type":"border","$value":{"color":"{borderColor.attention.muted}","width":"{borderWidth.default}","style":"solid"}}
+    },
+    "danger": {
+      "emphasis": {"$type":"border","$value":{"color":"{borderColor.danger.emphasis}","width":"{borderWidth.default}","style":"solid"}},
+      "muted": {"$type":"border","$value":{"color":"{borderColor.danger.muted}","width":"{borderWidth.default}","style":"solid"}}
+    },
+    "default": {"$type":"border","$value":{"color":"{borderColor.default}","width":"{borderWidth.default}","style":"solid"}},
+    "disabled": {"$type":"border","$value":{"color":"{borderColor.disabled}","width":"{borderWidth.default}","style":"solid"}},
+    "emphasis": {"$type":"border","$value":{"color":"{borderColor.emphasis}","width":"{borderWidth.default}","style":"solid"}},
+    "muted": {"$type":"border","$value":{"color":"{borderColor.muted}","width":"{borderWidth.default}","style":"solid"}},
+    "neutral": {
+      "emphasis": {"$type":"border","$value":{"color":"{borderColor.neutral.emphasis}","width":"{borderWidth.default}","style":"solid"}},
+      "muted": {"$type":"border","$value":{"color":"{borderColor.neutral.muted}","width":"{borderWidth.default}","style":"solid"}}
+    },
+    "severe": {
+      "emphasis": {"$type":"border","$value":{"color":"{borderColor.severe.emphasis}","width":"{borderWidth.default}","style":"solid"}},
+      "muted": {"$type":"border","$value":{"color":"{borderColor.severe.muted}","width":"{borderWidth.default}","style":"solid"}}
+    },
+    "success": {
+      "emphasis": {"$type":"border","$value":{"color":"{borderColor.success.emphasis}","width":"{borderWidth.default}","style":"solid"}},
+      "muted": {"$type":"border","$value":{"color":"{borderColor.success.muted}","width":"{borderWidth.default}","style":"solid"}}
+    },
+    "translucent": {"$type":"border","$value":{"color":"{borderColor.translucent}","width":"{borderWidth.default}","style":"solid"}},
+    "transparent": {"$type":"border","$value":{"color":"{borderColor.transparent}","width":"{borderWidth.default}","style":"solid"}}
+  },
+  "borderColor": {
+    "accent": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0353,0.4118,0.8549],"hex":"#0969da"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3294,0.6824,1],"alpha":0.4,"hex":"#54aeff"}}
+    },
+    "attention": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6039,0.4039,0],"hex":"#9a6700"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8314,0.6549,0.1725],"alpha":0.4,"hex":"#d4a72c"}}
+    },
+    "danger": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8118,0.1333,0.1804],"hex":"#cf222e"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.5059,0.5098],"alpha":0.4,"hex":"#ff8182"}}
+    },
+    "default": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.851,0.8784],"hex":"#d1d9e0"}},
+    "disabled": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5451,0.5961],"alpha":0.102,"hex":"#818b98"}},
+    "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5451,0.5961],"hex":"#818b98"}},
+    "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.851,0.8784],"alpha":0.702,"hex":"#d1d9e0"}},
+    "neutral": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.349,0.3882,0.4314],"hex":"#59636e"}},
+      "muted": {"$type":"color","$value":"{borderColor.muted}"}
+    },
+    "severe": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7373,0.298,0],"hex":"#bc4c00"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9843,0.5608,0.2667],"alpha":0.4,"hex":"#fb8f44"}}
+    },
+    "success": {
+      "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.102,0.498,0.2157],"hex":"#1a7f37"}},
+      "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2902,0.7608,0.4196],"alpha":0.4,"hex":"#4ac26b"}}
+    },
+    "translucent": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"alpha":0.149,"hex":"#1f2328"}},
+    "transparent": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"alpha":0,"hex":"#ffffff"}}
+  },
+  "control": {
+    "bgColor": {
+      "active": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.902,0.9176,0.9373],"hex":"#e6eaef"}},
+      "disabled": {"$type":"color","$value":"{bgColor.disabled}"},
+      "hover": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9373,0.949,0.9608],"hex":"#eff2f5"}},
+      "rest": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9647,0.9725,0.9804],"hex":"#f6f8fa"}},
+      "selected": {"$type":"color","$value":"{control.bgColor.rest}"}
+    },
+    "borderColor": {
+      "danger": {"$type":"color","$value":"{borderColor.danger.emphasis}"},
+      "disabled": {"$type":"color","$value":"{borderColor.disabled}"},
+      "emphasis": {"$type":"color","$value":"{borderColor.emphasis}"},
+      "rest": {"$type":"color","$value":"{borderColor.default}"},
+      "selected": {"$type":"color","$value":"{control.bgColor.selected}"},
+      "success": {"$type":"color","$value":"{borderColor.success.emphasis}"},
+      "warning": {"$type":"color","$value":"{borderColor.attention.emphasis}"}
+    },
+    "checked": {
+      "bgColor": {
+        "active": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0275,0.3412,0.7294],"hex":"#0757ba"}},
+        "disabled": {"$type":"color","$value":"{fgColor.disabled}"},
+        "hover": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0314,0.3765,0.7922],"hex":"#0860ca"}},
+        "rest": {"$type":"color","$value":"{bgColor.accent.emphasis}"}
+      },
+      "borderColor": {
+        "active": {"$type":"color","$value":"{control.checked.bgColor.active}"},
+        "disabled": {"$type":"color","$value":"{control.checked.bgColor.disabled}"},
+        "hover": {"$type":"color","$value":"{control.checked.bgColor.hover}"},
+        "rest": {"$type":"color","$value":"{control.checked.bgColor.rest}"}
+      },
+      "fgColor": {
+        "disabled": {"$type":"color","$value":"{fgColor.onEmphasis}"},
+        "rest": {"$type":"color","$value":"{fgColor.onEmphasis}"}
+      }
+    },
+    "danger": {
+      "bgColor": {
+        "active": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9216,0.9137],"alpha":0.4,"hex":"#ffebe9"}},
+        "hover": {"$type":"color","$value":"{bgColor.danger.muted}"}
+      },
+      "fgColor": {
+        "hover": {"$type":"color","$value":"{fgColor.danger}"},
+        "rest": {"$type":"color","$value":"{fgColor.danger}"}
+      }
+    },
+    "fgColor": {
+      "disabled": {"$type":"color","$value":"{fgColor.disabled}"},
+      "placeholder": {"$type":"color","$value":"{fgColor.muted}"},
+      "rest": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"hex":"#25292e"}}
+    },
+    "iconColor": {
+      "rest": {"$type":"color","$value":"{fgColor.muted}"}
+    },
+    "transparent": {
+      "bgColor": {
+        "active": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5451,0.5961],"alpha":0.149,"hex":"#818b98"}},
+        "disabled": {"$type":"color","$value":"{bgColor.disabled}"},
+        "hover": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5451,0.5961],"alpha":0.102,"hex":"#818b98"}},
+        "rest": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"alpha":0,"hex":"#ffffff"}},
+        "selected": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5451,0.5961],"alpha":0.149,"hex":"#818b98"}}
+      },
+      "borderColor": {
+        "active": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"alpha":0,"hex":"#ffffff"}},
+        "hover": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"alpha":0,"hex":"#ffffff"}},
+        "rest": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"alpha":0,"hex":"#ffffff"}}
+      }
+    }
+  },
+  "controlKnob": {
+    "bgColor": {
+      "checked": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"hex":"#ffffff"}},
+      "disabled": {"$type":"color","$value":"{control.bgColor.disabled}"},
+      "rest": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"hex":"#ffffff"}}
+    },
+    "borderColor": {
+      "checked": {"$type":"color","$value":"{control.checked.bgColor.rest}"},
+      "disabled": {"$type":"color","$value":"{control.bgColor.disabled}"},
+      "rest": {"$type":"color","$value":"{control.borderColor.rest}"}
+    }
+  },
+  "controlTrack": {
+    "bgColor": {
+      "active": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8549,0.8784,0.9059],"hex":"#dae0e7"}},
+      "disabled": {"$type":"color","$value":"{fgColor.disabled}"},
+      "hover": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8784,0.902,0.9216],"hex":"#e0e6eb"}},
+      "rest": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.902,0.9176,0.9373],"hex":"#e6eaef"}}
+    },
+    "borderColor": {
+      "disabled": {"$type":"color","$value":"{fgColor.disabled}"},
+      "rest": {"$type":"color","$value":"{borderColor.default}"}
+    },
+    "fgColor": {
+      "disabled": {"$type":"color","$value":"{fgColor.onEmphasis}"},
+      "rest": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.349,0.3882,0.4314],"hex":"#59636e"}}
+    }
+  },
+  "data": {
+    "auburn": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6157,0.3804,0.3608],"hex":"#9d615c"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.949,0.9137,0.9137],"hex":"#f2e9e9"}}
+      }
+    },
+    "blue": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4314,0.8588],"hex":"#006edb"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.9412,1],"hex":"#d1f0ff"}}
+      }
+    },
+    "brown": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5216,0.4275,0.298],"hex":"#856d4c"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9333,0.9176,0.8863],"hex":"#eeeae2"}}
+      }
+    },
+    "coral": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8314,0.2078,0.0667],"hex":"#d43511"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.898,0.8588],"hex":"#ffe5db"}}
+      }
+    },
+    "gray": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.502,0.5608,0.6392],"hex":"#808fa3"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9098,0.9255,0.949],"hex":"#e8ecf2"}}
+      }
+    },
+    "green": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1882,0.6314,0.2784],"hex":"#30a147"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7922,0.9686,0.7922],"hex":"#caf7ca"}}
+      }
+    },
+    "lemon": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5255,0.4314,0.0157],"hex":"#866e04"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9686,0.9333,0.6314],"hex":"#f7eea1"}}
+      }
+    },
+    "lime": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3216,0.4784,0.1608],"hex":"#527a29"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8902,0.949,0.7098],"hex":"#e3f2b5"}}
+      }
+    },
+    "olive": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.4627,0.1765],"hex":"#64762d"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9412,0.9412,0.6784],"hex":"#f0f0ad"}}
+      }
+    },
+    "orange": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9216,0.4039,0.0588],"hex":"#eb670f"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9059,0.8196],"hex":"#ffe7d1"}}
+      }
+    },
+    "pine": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0863,0.4941,0.3255],"hex":"#167e53"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.749,0.9725,0.8588],"hex":"#bff8db"}}
+      }
+    },
+    "pink": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8078,0.1725,0.5216],"hex":"#ce2c85"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.898,0.9451],"hex":"#ffe5f1"}}
+      }
+    },
+    "plum": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6588,0.1882,0.9098],"hex":"#a830e8"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9725,0.898,1],"hex":"#f8e5ff"}}
+      }
+    },
+    "purple": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5373,0.298,0.9216],"hex":"#894ceb"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9451,0.898,1],"hex":"#f1e5ff"}}
+      }
+    },
+    "red": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8745,0.0471,0.1412],"hex":"#df0c24"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.8863,0.8784],"hex":"#ffe2e0"}}
+      }
+    },
+    "teal": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0902,0.6078,0.6078],"hex":"#179b9b"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7804,0.9608,0.9373],"hex":"#c7f5ef"}}
+      }
+    },
+    "yellow": {
+      "color": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7216,0.5294,0],"hex":"#b88700"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9255,0.6196],"hex":"#ffec9e"}}
+      }
+    }
+  },
+  "display": {
+    "auburn": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6157,0.3804,0.3608],"hex":"#9d615c"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.949,0.9137,0.9137],"hex":"#f2e9e9"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6157,0.3804,0.3608],"hex":"#9d615c"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.902,0.8392,0.8353],"hex":"#e6d6d5"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5412,0.3333,0.3176],"hex":"#8a5551"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.949,0.9137,0.9137],"hex":"#f2e9e9"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.902,0.8392,0.8353],"hex":"#e6d6d5"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8314,0.7176,0.7098],"hex":"#d4b7b5"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7725,0.6196,0.6078],"hex":"#c59e9b"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7059,0.5098,0.4941],"hex":"#b4827e"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6157,0.3804,0.3608],"hex":"#9d615c"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5412,0.3333,0.3176],"hex":"#8a5551"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4549,0.2784,0.2667],"hex":"#744744"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3647,0.2235,0.2157],"hex":"#5d3937"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2627,0.1608,0.1569],"hex":"#432928"}}
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4314,0.8588],"hex":"#006edb"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.9412,1],"hex":"#d1f0ff"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4314,0.8588],"hex":"#006edb"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6784,0.8824,1],"hex":"#ade1ff"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.3725,0.8],"hex":"#005fcc"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.9412,1],"hex":"#d1f0ff"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6784,0.8824,1],"hex":"#ade1ff"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4588,0.7843,1],"hex":"#75c8ff"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2784,0.6863,1],"hex":"#47afff"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0588,0.5608,1],"hex":"#0f8fff"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4314,0.8588],"hex":"#006edb"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.3725,0.8],"hex":"#005fcc"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.302,0.702],"hex":"#004db3"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.2392,0.6],"hex":"#003d99"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.1686,0.4588],"hex":"#002b75"}}
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5216,0.4275,0.298],"hex":"#856d4c"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9333,0.9176,0.8863],"hex":"#eeeae2"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5216,0.4275,0.298],"hex":"#856d4c"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8745,0.8431,0.7843],"hex":"#dfd7c8"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4588,0.3725,0.2627],"hex":"#755f43"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9333,0.9176,0.8863],"hex":"#eeeae2"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8745,0.8431,0.7843],"hex":"#dfd7c8"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7961,0.7412,0.6431],"hex":"#cbbda4"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7216,0.6431,0.5176],"hex":"#b8a484"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.651,0.5451,0.3922],"hex":"#a68b64"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5216,0.4275,0.298],"hex":"#856d4c"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4588,0.3725,0.2627],"hex":"#755f43"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.3176,0.2275],"hex":"#64513a"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3176,0.2549,0.1843],"hex":"#51412f"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2275,0.1804,0.1333],"hex":"#3a2e22"}}
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8314,0.2078,0.0667],"hex":"#d43511"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.898,0.8588],"hex":"#ffe5db"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8314,0.2078,0.0667],"hex":"#d43511"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9961,0.8078,0.7451],"hex":"#fecebe"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7294,0.1804,0.0706],"hex":"#ba2e12"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.898,0.8588],"hex":"#ffe5db"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9961,0.8078,0.7451],"hex":"#fecebe"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9882,0.6706,0.5725],"hex":"#fcab92"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9725,0.5294,0.4078],"hex":"#f88768"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.949,0.3725,0.2275],"hex":"#f25f3a"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8314,0.2078,0.0667],"hex":"#d43511"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7294,0.1804,0.0706],"hex":"#ba2e12"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6078,0.1529,0.0706],"hex":"#9b2712"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4941,0.1255,0.0667],"hex":"#7e2011"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3647,0.0941,0.0549],"hex":"#5d180e"}}
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4824,0.5804],"hex":"#007b94"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7412,0.9569,1],"hex":"#bdf4ff"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4824,0.5804],"hex":"#007b94"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4784,0.9137,1],"hex":"#7ae9ff"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4157,0.502],"hex":"#006a80"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7412,0.9569,1],"hex":"#bdf4ff"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4784,0.9137,1],"hex":"#7ae9ff"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.8157,0.9804],"hex":"#00d0fa"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.7176,0.8588],"hex":"#00b7db"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.6,0.7216],"hex":"#0099b8"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4824,0.5804],"hex":"#007b94"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.4157,0.502],"hex":"#006a80"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.349,0.4196],"hex":"#00596b"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.2824,0.3412],"hex":"#004857"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0,0.2157,0.2588],"hex":"#003742"}}
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.4431,0.5098],"hex":"#647182"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9098,0.9255,0.949],"hex":"#e8ecf2"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.4431,0.5098],"hex":"#647182"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8235,0.8549,0.8941],"hex":"#d2dae4"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3608,0.3961,0.4392],"hex":"#5c6570"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9098,0.9255,0.949],"hex":"#e8ecf2"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8235,0.8549,0.8941],"hex":"#d2dae4"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7059,0.7529,0.8118],"hex":"#b4c0cf"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6078,0.6627,0.7333],"hex":"#9ba9bb"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.502,0.5608,0.6392],"hex":"#808fa3"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.4431,0.5098],"hex":"#647182"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3608,0.3961,0.4392],"hex":"#5c6570"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3059,0.3255,0.3529],"hex":"#4e535a"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2588,0.2667,0.2824],"hex":"#424448"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1882,0.1882,0.1922],"hex":"#303031"}}
+      }
+    },
+    "green": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1725,0.5059,0.2549],"hex":"#2c8141"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7922,0.9686,0.7922],"hex":"#caf7ca"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1725,0.5059,0.2549],"hex":"#2c8141"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6118,0.9294,0.6275],"hex":"#9ceda0"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1686,0.4314,0.2471],"hex":"#2b6e3f"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7922,0.9686,0.7922],"hex":"#caf7ca"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6118,0.9294,0.6275],"hex":"#9ceda0"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3294,0.851,0.3804],"hex":"#54d961"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1922,0.749,0.2745],"hex":"#31bf46"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1882,0.6314,0.2784],"hex":"#30a147"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1725,0.5059,0.2549],"hex":"#2c8141"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1686,0.4314,0.2471],"hex":"#2b6e3f"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1569,0.3608,0.2314],"hex":"#285c3b"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1451,0.2941,0.2039],"hex":"#254b34"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1137,0.2078,0.1569],"hex":"#1d3528"}}
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3529,0.3804,0.9059],"hex":"#5a61e7"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.898,0.9137,1],"hex":"#e5e9ff"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3529,0.3804,0.9059],"hex":"#5a61e7"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8235,0.8431,0.9961],"hex":"#d2d7fe"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2863,0.3059,0.8745],"hex":"#494edf"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.898,0.9137,1],"hex":"#e5e9ff"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8235,0.8431,0.9961],"hex":"#d2d7fe"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6941,0.7255,0.9843],"hex":"#b1b9fb"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5922,0.6235,0.9686],"hex":"#979ff7"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4784,0.5098,0.9412],"hex":"#7a82f0"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3529,0.3804,0.9059],"hex":"#5a61e7"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2863,0.3059,0.8745],"hex":"#494edf"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2235,0.2353,0.8353],"hex":"#393cd5"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1765,0.1765,0.7059],"hex":"#2d2db4"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1451,0.1412,0.4824],"hex":"#25247b"}}
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5255,0.4314,0.0157],"hex":"#866e04"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9686,0.9333,0.6314],"hex":"#f7eea1"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5255,0.4314,0.0157],"hex":"#866e04"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9412,0.8588,0.2392],"hex":"#f0db3d"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4706,0.3765,0.0078],"hex":"#786002"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9686,0.9333,0.6314],"hex":"#f7eea1"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9412,0.8588,0.2392],"hex":"#f0db3d"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8471,0.7412,0.0549],"hex":"#d8bd0e"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7608,0.651,0.0392],"hex":"#c2a60a"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.651,0.549,0.0275],"hex":"#a68c07"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5255,0.4314,0.0157],"hex":"#866e04"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4706,0.3765,0.0078],"hex":"#786002"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3961,0.3098,0.0039],"hex":"#654f01"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3216,0.2471,0],"hex":"#523f00"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2392,0.1804,0],"hex":"#3d2e00"}}
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3216,0.4784,0.1608],"hex":"#527a29"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8902,0.949,0.7098],"hex":"#e3f2b5"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3216,0.4784,0.1608],"hex":"#527a29"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7804,0.898,0.502],"hex":"#c7e580"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2784,0.4235,0.1569],"hex":"#476c28"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8902,0.949,0.7098],"hex":"#e3f2b5"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7804,0.898,0.502],"hex":"#c7e580"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6078,0.8157,0.2235],"hex":"#9bd039"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.502,0.7098,0.1882],"hex":"#80b530"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4235,0.6157,0.1843],"hex":"#6c9d2f"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3216,0.4784,0.1608],"hex":"#527a29"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2784,0.4235,0.1569],"hex":"#476c28"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2275,0.3569,0.1451],"hex":"#3a5b25"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1843,0.2902,0.1294],"hex":"#2f4a21"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1294,0.2,0.098],"hex":"#213319"}}
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.4627,0.1765],"hex":"#64762d"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9412,0.9412,0.6784],"hex":"#f0f0ad"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.4627,0.1765],"hex":"#64762d"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8588,0.8824,0.4392],"hex":"#dbe170"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3373,0.4078,0.1725],"hex":"#56682c"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9412,0.9412,0.6784],"hex":"#f0f0ad"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8588,0.8824,0.4392],"hex":"#dbe170"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7255,0.7843,0.1961],"hex":"#b9c832"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6078,0.6824,0.1961],"hex":"#9bae32"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5843,0.1961],"hex":"#819532"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3922,0.4627,0.1765],"hex":"#64762d"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3373,0.4078,0.1725],"hex":"#56682c"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2863,0.3529,0.1686],"hex":"#495a2b"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2314,0.2863,0.1529],"hex":"#3b4927"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1647,0.2,0.1216],"hex":"#2a331f"}}
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7216,0.3137,0.0588],"hex":"#b8500f"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9059,0.8196],"hex":"#ffe7d1"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7216,0.3137,0.0588],"hex":"#b8500f"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9961,0.8118,0.6667],"hex":"#fecfaa"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6353,0.2745,0.0627],"hex":"#a24610"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9059,0.8196],"hex":"#ffe7d1"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9961,0.8118,0.6667],"hex":"#fecfaa"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9843,0.6863,0.4549],"hex":"#fbaf74"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9647,0.549,0.2549],"hex":"#f68c41"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9216,0.4039,0.0588],"hex":"#eb670f"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7216,0.3137,0.0588],"hex":"#b8500f"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6353,0.2745,0.0627],"hex":"#a24610"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5529,0.2353,0.0667],"hex":"#8d3c11"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4392,0.1882,0.0588],"hex":"#70300f"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3294,0.1373,0.051],"hex":"#54230d"}}
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0863,0.4941,0.3255],"hex":"#167e53"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.749,0.9725,0.8588],"hex":"#bff8db"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0863,0.4941,0.3255],"hex":"#167e53"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.502,0.9373,0.7255],"hex":"#80efb9"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0824,0.4353,0.2941],"hex":"#156f4b"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.749,0.9725,0.8588],"hex":"#bff8db"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.502,0.9373,0.7255],"hex":"#80efb9"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1137,0.8431,0.5059],"hex":"#1dd781"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1137,0.749,0.4627],"hex":"#1dbf76"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.102,0.6353,0.4039],"hex":"#1aa267"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0863,0.4941,0.3255],"hex":"#167e53"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0824,0.4353,0.2941],"hex":"#156f4b"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0745,0.3647,0.2549],"hex":"#135d41"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0667,0.2941,0.2118],"hex":"#114b36"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.051,0.2118,0.1529],"hex":"#0d3627"}}
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8078,0.1725,0.5216],"hex":"#ce2c85"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.898,0.9451],"hex":"#ffe5f1"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8078,0.1725,0.5216],"hex":"#ce2c85"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9922,0.7882,0.8863],"hex":"#fdc9e2"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6941,0.1843,0.4745],"hex":"#b12f79"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.898,0.9451],"hex":"#ffe5f1"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9922,0.7882,0.8863],"hex":"#fdc9e2"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9725,0.6471,0.8118],"hex":"#f8a5cf"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9451,0.5176,0.7373],"hex":"#f184bc"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.898,0.3647,0.6471],"hex":"#e55da5"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8078,0.1725,0.5216],"hex":"#ce2c85"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6941,0.1843,0.4745],"hex":"#b12f79"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5569,0.1804,0.4],"hex":"#8e2e66"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4314,0.1686,0.3255],"hex":"#6e2b53"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.302,0.1373,0.2392],"hex":"#4d233d"}}
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6588,0.1882,0.9098],"hex":"#a830e8"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9725,0.898,1],"hex":"#f8e5ff"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6588,0.1882,0.9098],"hex":"#a830e8"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9412,0.8039,0.9961],"hex":"#f0cdfe"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5882,0.1176,0.8627],"hex":"#961edc"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9725,0.898,1],"hex":"#f8e5ff"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9412,0.8039,0.9961],"hex":"#f0cdfe"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8863,0.6549,0.9843],"hex":"#e2a7fb"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8314,0.5294,0.9686],"hex":"#d487f7"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7608,0.3922,0.949],"hex":"#c264f2"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6588,0.1882,0.9098],"hex":"#a830e8"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5882,0.1176,0.8627],"hex":"#961edc"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4902,0.1176,0.7216],"hex":"#7d1eb8"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3961,0.1137,0.5882],"hex":"#651d96"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2784,0.0902,0.4118],"hex":"#471769"}}
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5373,0.298,0.9216],"hex":"#894ceb"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9451,0.898,1],"hex":"#f1e5ff"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5373,0.298,0.9216],"hex":"#894ceb"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.902,0.8235,0.9961],"hex":"#e6d2fe"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4706,0.2275,0.8941],"hex":"#783ae4"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9451,0.898,1],"hex":"#f1e5ff"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.902,0.8235,0.9961],"hex":"#e6d2fe"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.6941,0.9882],"hex":"#d1b1fc"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7373,0.5686,0.9725],"hex":"#bc91f8"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.651,0.4471,0.9529],"hex":"#a672f3"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5373,0.298,0.9216],"hex":"#894ceb"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4706,0.2275,0.8941],"hex":"#783ae4"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3843,0.1373,0.8431],"hex":"#6223d7"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3098,0.1294,0.6706],"hex":"#4f21ab"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2235,0.1059,0.4745],"hex":"#391b79"}}
+      }
+    },
+    "red": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8745,0.0471,0.1412],"hex":"#df0c24"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.8863,0.8784],"hex":"#ffe2e0"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8745,0.0471,0.1412],"hex":"#df0c24"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9961,0.8039,0.8039],"hex":"#fecdcd"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7725,0.051,0.1569],"hex":"#c50d28"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.8863,0.8784],"hex":"#ffe2e0"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9961,0.8039,0.8039],"hex":"#fecdcd"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9922,0.6471,0.6549],"hex":"#fda5a7"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9843,0.5137,0.5373],"hex":"#fb8389"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9725,0.3294,0.3804],"hex":"#f85461"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8745,0.0471,0.1412],"hex":"#df0c24"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7725,0.051,0.1569],"hex":"#c50d28"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.651,0.0471,0.1608],"hex":"#a60c29"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5333,0.0471,0.1529],"hex":"#880c27"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3804,0.0392,0.1255],"hex":"#610a20"}}
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0706,0.4941,0.5059],"hex":"#127e81"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7804,0.9608,0.9373],"hex":"#c7f5ef"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0706,0.4941,0.5059],"hex":"#127e81"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5373,0.9216,0.8824],"hex":"#89ebe1"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0627,0.4314,0.4588],"hex":"#106e75"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7804,0.9608,0.9373],"hex":"#c7f5ef"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5373,0.9216,0.8824],"hex":"#89ebe1"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1333,0.8275,0.7804],"hex":"#22d3c7"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1137,0.7255,0.7059],"hex":"#1db9b4"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0902,0.6078,0.6078],"hex":"#179b9b"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0706,0.4941,0.5059],"hex":"#127e81"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0627,0.4314,0.4588],"hex":"#106e75"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.051,0.3569,0.3882],"hex":"#0d5b63"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0392,0.2824,0.3216],"hex":"#0a4852"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0275,0.2157,0.251],"hex":"#073740"}}
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5804,0.4157,0],"hex":"#946a00"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9255,0.6196],"hex":"#ffec9e"}}
+      },
+      "borderColor": {
+        "emphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5804,0.4157,0],"hex":"#946a00"}},
+        "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.8392,0.2588],"hex":"#ffd642"}}
+      },
+      "fgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.502,0.349,0],"hex":"#805900"}},
+      "scale": {
+        "0": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.9255,0.6196],"hex":"#ffec9e"}},
+        "1": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,0.8392,0.2588],"hex":"#ffd642"}},
+        "2": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.9216,0.7059,0],"hex":"#ebb400"}},
+        "3": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.6157,0],"hex":"#d19d00"}},
+        "4": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7216,0.5294,0],"hex":"#b88700"}},
+        "5": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5804,0.4157,0],"hex":"#946a00"}},
+        "6": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.502,0.349,0],"hex":"#805900"}},
+        "7": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.4392,0.302,0],"hex":"#704d00"}},
+        "8": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.3608,0.2392,0],"hex":"#5c3d00"}},
+        "9": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.2588,0.1686,0],"hex":"#422b00"}}
+      }
+    }
+  },
+  "fgColor": {
+    "accent": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0353,0.4118,0.8549],"hex":"#0969da"}},
+    "attention": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.6039,0.4039,0],"hex":"#9a6700"}},
+    "black": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"hex":"#1f2328"}},
+    "danger": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.8196,0.1412,0.1843],"hex":"#d1242f"}},
+    "default": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"hex":"#1f2328"}},
+    "disabled": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.5059,0.5451,0.5961],"hex":"#818b98"}},
+    "link": {"$type":"color","$value":"{fgColor.accent}"},
+    "muted": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.349,0.3882,0.4314],"hex":"#59636e"}},
+    "neutral": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.349,0.3882,0.4314],"hex":"#59636e"}},
+    "onEmphasis": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"hex":"#ffffff"}},
+    "onInverse": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"hex":"#ffffff"}},
+    "severe": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.7373,0.298,0],"hex":"#bc4c00"}},
+    "success": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.102,0.498,0.2157],"hex":"#1a7f37"}},
+    "white": {"$type":"color","$value":{"colorSpace":"srgb","components":[1,1,1],"hex":"#ffffff"}}
+  },
+  "selection": {
+    "bgColor": {"$type":"color","$value":{"colorSpace":"srgb","components":[0.0353,0.4118,0.8549],"alpha":0.2,"hex":"#0969da"}}
+  },
+  "shadow": {
+    "floating": {
+      "large": {"$type":"shadow","$value":[{"color":{"colorSpace":"srgb","components":[0.8196,0.851,0.8784],"alpha":0,"hex":"#d1d9e0"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":0,"unit":"px"},"blur":{"value":0,"unit":"px"},"spread":{"value":1,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.2392,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":40,"unit":"px"},"blur":{"value":80,"unit":"px"},"spread":{"value":0,"unit":"px"}}]},
+      "medium": {"$type":"shadow","$value":[{"color":{"colorSpace":"srgb","components":[0.8196,0.851,0.8784],"alpha":0,"hex":"#d1d9e0"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":0,"unit":"px"},"blur":{"value":0,"unit":"px"},"spread":{"value":1,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.0784,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":8,"unit":"px"},"blur":{"value":16,"unit":"px"},"spread":{"value":-4,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.0784,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":4,"unit":"px"},"blur":{"value":32,"unit":"px"},"spread":{"value":-4,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.0784,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":24,"unit":"px"},"blur":{"value":48,"unit":"px"},"spread":{"value":-12,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.0784,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":48,"unit":"px"},"blur":{"value":96,"unit":"px"},"spread":{"value":-24,"unit":"px"}}]},
+      "small": {"$type":"shadow","$value":[{"color":{"colorSpace":"srgb","components":[0.8196,0.851,0.8784],"alpha":0.251,"hex":"#d1d9e0"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":0,"unit":"px"},"blur":{"value":0,"unit":"px"},"spread":{"value":1,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.0392,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":6,"unit":"px"},"blur":{"value":12,"unit":"px"},"spread":{"value":-3,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.1216,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":6,"unit":"px"},"blur":{"value":18,"unit":"px"},"spread":{"value":0,"unit":"px"}}]},
+      "xlarge": {"$type":"shadow","$value":[{"color":{"colorSpace":"srgb","components":[0.8196,0.851,0.8784],"alpha":0,"hex":"#d1d9e0"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":0,"unit":"px"},"blur":{"value":0,"unit":"px"},"spread":{"value":1,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.3216,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":56,"unit":"px"},"blur":{"value":112,"unit":"px"},"spread":{"value":0,"unit":"px"}}]}
+    },
+    "inset": {"$type":"shadow","$value":{"color":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"alpha":0.0392,"hex":"#1f2328"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":1,"unit":"px"},"blur":{"value":0,"unit":"px"},"spread":{"value":0,"unit":"px"},"inset":true}},
+    "resting": {
+      "medium": {"$type":"shadow","$value":[{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.102,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":1,"unit":"px"},"blur":{"value":1,"unit":"px"},"spread":{"value":0,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1451,0.1608,0.1804],"alpha":0.1216,"hex":"#25292e"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":3,"unit":"px"},"blur":{"value":6,"unit":"px"},"spread":{"value":0,"unit":"px"}}]},
+      "small": {"$type":"shadow","$value":[{"color":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"alpha":0.0392,"hex":"#1f2328"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":1,"unit":"px"},"blur":{"value":1,"unit":"px"},"spread":{"value":0,"unit":"px"}},{"color":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"alpha":0.0314,"hex":"#1f2328"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":1,"unit":"px"},"blur":{"value":2,"unit":"px"},"spread":{"value":0,"unit":"px"}}]},
+      "xsmall": {"$type":"shadow","$value":{"color":{"colorSpace":"srgb","components":[0.1216,0.1373,0.1569],"alpha":0.051,"hex":"#1f2328"},"offsetX":{"value":0,"unit":"px"},"offsetY":{"value":1,"unit":"px"},"blur":{"value":1,"unit":"px"},"spread":{"value":0,"unit":"px"}}}
+    }
+  }
+}

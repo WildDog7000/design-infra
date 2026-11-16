@@ -1,0 +1,112 @@
+{
+  "$schema": "../schema/component.schema.json",
+  "id": "button",
+  "name": "Button",
+  "importPath": "@lima-design/react",
+  "status": "alpha",
+  "passthroughElement": "button",
+  "props": [
+    {
+      "name": "alignContent",
+      "type": "'start' | 'center'",
+      "required": false
+    },
+    {
+      "name": "as",
+      "type": "React.ElementType",
+      "required": false,
+      "defaultValue": "'button'"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "block",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "children",
+      "type": "React.ReactNode",
+      "required": true
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "inactive",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "leadingIcon",
+      "type": "React.ComponentType<IconProps>",
+      "required": false,
+      "deprecated": true
+    },
+    {
+      "name": "leadingVisual",
+      "type": "React.ElementType",
+      "required": false
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "loadingAnnouncement",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "ref",
+      "type": "React.RefObject<HTMLButtonElement>",
+      "required": false
+    },
+    {
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'",
+      "required": false,
+      "defaultValue": "'medium'"
+    },
+    {
+      "name": "trailingIcon",
+      "type": "React.ComponentType<IconProps>",
+      "required": false,
+      "deprecated": true
+    },
+    {
+      "name": "trailingVisual",
+      "type": "React.ElementType",
+      "required": false
+    },
+    {
+      "name": "trailingAction",
+      "type": "React.ElementType",
+      "required": false
+    },
+    {
+      "name": "variant",
+      "type": "'default' | 'primary' | 'danger' | 'invisible' | 'link'",
+      "required": false,
+      "defaultValue": "'default'"
+    },
+    {
+      "name": "labelWrap",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false
+    }
+  ],
+  "subcomponents": []
+}

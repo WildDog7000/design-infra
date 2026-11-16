@@ -1,0 +1,24 @@
+{
+  "control": {
+    "minTarget": {
+      "auto": {"$type":"dimension","$value":{"value":2.75,"unit":"rem"}}
+    }
+  },
+  "controlStack": {
+    "large": {
+      "gap": {
+        "auto": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}}
+      }
+    },
+    "medium": {
+      "gap": {
+        "auto": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}}
+      }
+    },
+    "small": {
+      "gap": {
+        "auto": {"$type":"dimension","$value":{"value":1,"unit":"rem"}}
+      }
+    }
+  }
+}

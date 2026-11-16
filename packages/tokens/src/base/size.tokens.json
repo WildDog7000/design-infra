@@ -1,0 +1,48 @@
+{
+  "base": {
+    "size": {
+      "2": {"$type":"dimension","$value":{"value":0.125,"unit":"rem"}},
+      "4": {"$type":"dimension","$value":{"value":0.25,"unit":"rem"}},
+      "6": {"$type":"dimension","$value":{"value":0.375,"unit":"rem"}},
+      "8": {"$type":"dimension","$value":{"value":0.5,"unit":"rem"}},
+      "12": {"$type":"dimension","$value":{"value":0.75,"unit":"rem"}},
+      "16": {"$type":"dimension","$value":{"value":1,"unit":"rem"}},
+      "20": {"$type":"dimension","$value":{"value":1.25,"unit":"rem"}},
+      "24": {"$type":"dimension","$value":{"value":1.5,"unit":"rem"}},
+      "28": {"$type":"dimension","$value":{"value":1.75,"unit":"rem"}},
+      "32": {"$type":"dimension","$value":{"value":2,"unit":"rem"}},
+      "36": {"$type":"dimension","$value":{"value":2.25,"unit":"rem"}},
+      "40": {"$type":"dimension","$value":{"value":2.5,"unit":"rem"}},
+      "44": {"$type":"dimension","$value":{"value":2.75,"unit":"rem"}},
+      "48": {"$type":"dimension","$value":{"value":3,"unit":"rem"}},
+      "64": {"$type":"dimension","$value":{"value":4,"unit":"rem"}},
+      "80": {"$type":"dimension","$value":{"value":5,"unit":"rem"}},
+      "96": {"$type":"dimension","$value":{"value":6,"unit":"rem"}},
+      "112": {"$type":"dimension","$value":{"value":7,"unit":"rem"}},
+      "128": {"$type":"dimension","$value":{"value":8,"unit":"rem"}},
+      "negative-12": {"$type":"dimension","$value":{"value":-0.75,"unit":"rem"}},
+      "negative-16": {"$type":"dimension","$value":{"value":-1,"unit":"rem"}},
+      "negative-2": {"$type":"dimension","$value":{"value":-0.125,"unit":"rem"}},
+      "negative-20": {"$type":"dimension","$value":{"value":-1.25,"unit":"rem"}},
+      "negative-24": {"$type":"dimension","$value":{"value":-1.5,"unit":"rem"}},
+      "negative-28": {"$type":"dimension","$value":{"value":-1.75,"unit":"rem"}},
+      "negative-32": {"$type":"dimension","$value":{"value":-2,"unit":"rem"}},
+      "negative-36": {"$type":"dimension","$value":{"value":-2.25,"unit":"rem"}},
+      "negative-4": {"$type":"dimension","$value":{"value":-0.25,"unit":"rem"}},
+      "negative-40": {"$type":"dimension","$value":{"value":-2.5,"unit":"rem"}},
+      "negative-44": {"$type":"dimension","$value":{"value":-2.75,"unit":"rem"}},
+      "negative-48": {"$type":"dimension","$value":{"value":-3,"unit":"rem"}},
+      "negative-6": {"$type":"dimension","$value":{"value":-0.375,"unit":"rem"}},
+      "negative-8": {"$type":"dimension","$value":{"value":-0.5,"unit":"rem"}}
+    },
+    "zIndex": {
+      "0": {"$type":"number","$value":0},
+      "100": {"$type":"number","$value":100},
+      "200": {"$type":"number","$value":200},
+      "300": {"$type":"number","$value":300},
+      "400": {"$type":"number","$value":400},
+      "500": {"$type":"number","$value":500},
+      "600": {"$type":"number","$value":600}
+    }
+  }
+}
