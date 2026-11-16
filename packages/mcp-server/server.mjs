@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * LLP design-system MCP server (stdio).
+ * Lima Design System MCP server (stdio).
  *
  * Exposes the git token contract — the single source of truth — as queryable
  * tools for AI coding agents. Read-only by design: proposals for changing
@@ -15,7 +15,7 @@ import * as engine from './lib.mjs';
 import { registerTools } from './tools.mjs';
 import { registerComponentTools } from './components.mjs';
 
-const server = new McpServer({ name: 'llp-design-tokens', version: '0.1.0' });
+const server = new McpServer({ name: 'lima-design-system', title: 'Lima Design System', version: '0.1.0' });
 registerTools(server, engine);
 
 // Component tools need the (unpublished) components workspace — present in

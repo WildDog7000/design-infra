@@ -12,7 +12,7 @@ const asText = (data) => ({ content: [{ type: 'text', text: JSON.stringify(data,
 export function registerTools(server, engine) {
   server.tool(
     'search_tokens',
-    'Search LLP design tokens by name substring, with optional type/tier filters. ' +
+    'Search Lima Design System tokens by name substring, with optional type/tier filters. ' +
       'Prefer usage-tier tokens in component code — they encode roles, not raw scales. ' +
       'Each result includes the CSS custom property name to use (cssVar).',
     {

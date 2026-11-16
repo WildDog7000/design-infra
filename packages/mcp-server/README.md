@@ -1,6 +1,6 @@
 # @llp-design/mcp-server
 
-Read-only MCP server exposing the LLP token contract to AI coding agents
+Read-only MCP server exposing the Lima Design System token contract to AI coding agents
 (ADR-0008). Third consumer of the same DTCG source of truth, after the
 platform deliverables (CSS/TS/JSON) and the Figma plugin.
 
@@ -23,7 +23,7 @@ project's `.mcp.json`, or run `claude mcp add`:
 ```json
 {
   "mcpServers": {
-    "llp-design-tokens": { "command": "npx", "args": ["-y", "@llp-design/mcp-server"] }
+    "lima-design-system": { "command": "npx", "args": ["-y", "@llp-design/mcp-server"] }
   }
 }
 ```

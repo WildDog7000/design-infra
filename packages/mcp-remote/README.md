@@ -1,6 +1,6 @@
 # @llp-design/mcp-remote
 
-Remote form of the LLP design-tokens MCP server (ADR-0010): a Cloudflare
+Remote form of the Lima Design System MCP server (ADR-0010): a Cloudflare
 Worker serving the same query engine as `@llp-design/mcp-server` over
 Streamable HTTP. Built for designers and web clients — no Node, no repo
 checkout, no config files.

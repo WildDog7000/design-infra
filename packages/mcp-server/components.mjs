@@ -12,7 +12,7 @@ const asText = (data) => ({ content: [{ type: 'text', text: JSON.stringify(data,
 export function registerComponentTools(server, loader) {
   server.tool(
     'list_components',
-    'List the LLP design-system components available for building pages: name, purpose, ' +
+    'List the Lima Design System components available for building pages: name, purpose, ' +
       'variants. Start here when composing any UI. Every page must also inline the ' +
       'foundation stylesheet (see get_component with slug "foundation").',
     {},

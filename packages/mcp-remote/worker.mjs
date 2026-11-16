@@ -1,5 +1,5 @@
 /**
- * LLP design-system MCP server, remote form (Cloudflare Worker).
+ * Lima Design System MCP server, remote form (Cloudflare Worker).
  *
  * Same query engine and tool surface as the stdio server — only the shell
  * differs. Contract freshness follows the designer-truth model (ADR-0009):
@@ -71,7 +71,7 @@ export default {
     const { pathname } = new URL(request.url);
     if (pathname === '/') {
       return new Response(
-        'LLP design-tokens MCP server. Connect your MCP client to /mcp ' +
+        'Lima Design System MCP server. Connect your MCP client to /mcp ' +
           '(read-only; contract source: github.com/WildDog7000/design-infra)',
         { headers: { 'content-type': 'text/plain' } }
       );
@@ -92,7 +92,7 @@ export default {
     // module-level, so the contract is not refetched per request.
     // enableJsonResponse: plain application/json replies instead of SSE —
     // nothing here streams, and JSON avoids edge buffering quirks entirely.
-    const server = new McpServer({ name: 'llp-design-tokens', version: '0.1.0' });
+    const server = new McpServer({ name: 'lima-design-system', title: 'Lima Design System', version: '0.1.0' });
     registerTools(server, lazyEngine);
     registerComponentTools(server, componentLoader);
     return createMcpHandler(server, { route: '/mcp', enableJsonResponse: true })(request, env, ctx);
