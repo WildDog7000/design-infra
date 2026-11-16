@@ -1,6 +1,6 @@
-# AGENTS.md — LLP Design System, agent orchestration
+# AGENTS.md — Lima Design System, agent orchestration
 
-You are working with the **LLP design system**. This file is the always-on
+You are working with the **Lima Design System**. This file is the always-on
 layer: rules that apply to every task, no matter what you were asked to build.
 Component details are on-demand via MCP (below). Never guess what you can query.
 
@@ -32,7 +32,7 @@ output "looks right".
 
 ## Components: query, don't invent
 
-Component APIs live in the MCP server (`llp-design-tokens`), tools:
+Component APIs live in the MCP server (`lima-design-system`), tools:
 
 - `list_components` — start here for any page composition
 - `get_component` — canonical markup template, modifier classes, inlineable CSS

@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "llp-design-tokens": {
+    "lima-design-system": {
       "command": "node",
       "args": ["packages/mcp-server/server.mjs"]
     }

@@ -1,7 +1,7 @@
 {
   "name": "@llp-design/mcp-remote",
   "version": "0.1.0",
-  "description": "LLP design-system MCP server, remote form — Cloudflare Worker serving the token contract over Streamable HTTP",
+  "description": "Lima Design System MCP server, remote form — Cloudflare Worker serving the token contract over Streamable HTTP",
   "license": "MIT",
   "type": "module",
   "private": true,

@@ -1,7 +1,7 @@
 {
   "name": "@llp-design/mcp-server",
   "version": "0.2.0",
-  "description": "LLP design-system MCP server — exposes the token contract as queryable tools for AI coding agents",
+  "description": "Lima Design System MCP server — exposes the token contract as queryable tools for AI coding agents",
   "license": "MIT",
   "repository": {
     "type": "git",
