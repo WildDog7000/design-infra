@@ -1,14 +1,14 @@
 {
-  "name": "llp-design-infra",
+  "name": "lima-design-system",
   "private": true,
   "version": "0.0.0",
-  "description": "LLP design infrastructure monorepo — token pipeline, Figma sync, design-system MCP server",
+  "description": "Lima Design System — design-system contract, MCP server and evals for agentic UI generation",
   "type": "module",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace @llp-design/tokens && npm run build --workspaces --if-present",
+    "validate": "npm run validate --workspaces --if-present",
     "test": "npm run test --workspaces --if-present"
   },
   "engines": {

@@ -1,0 +1,17 @@
+{
+  "name": "@lima-design/contract",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lima Design System contract — tokens and component APIs as machine-readable data, viewable at different intent levels",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./lib/contract.mjs",
+    "./intent-levels.json": "./intent-levels.json",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test"
+  }
+}
