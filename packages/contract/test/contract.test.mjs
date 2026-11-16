@@ -1,14 +1,12 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { allowedFields, levelIds, loadContract, loadSource, projectComponent, projectToken } from '../lib/contract.mjs';
-import { validate } from '../scripts/validate.mjs';
+import { allowedFields, levelIds, loadContract, loadIntentLevels, projectComponent, projectToken } from '../lib/contract.mjs';
+import { governedFields, validate } from '../scripts/validate.mjs';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
-test('the contract source is valid', () => {
-  const { problems, counts } = validate();
-  assert.deepEqual(problems, []);
-  assert.ok(counts.tokens > 0 && counts.components > 0);
+test('the intent-level registry covers the data exactly', () => {
+  assert.deepEqual(validate().problems, []);
 });
 
 test('levels are ordered and cumulative', () => {
@@ -19,84 +17,72 @@ test('levels are ordered and cumulative', () => {
   assert.equal(rules.has('description'), true);
   for (const field of structure) assert.equal(rules.has(field), true);
   assert.throws(() => allowedFields('token', 'vibes'), /Unknown intent level/);
+  assert.throws(() => allowedFields('gadget', 'structure'), /Unknown record kind/);
 });
 
 test('projection keeps only the fields of the requested level, at every depth', () => {
-  const token = {
-    name: 'fgColor-muted',
-    description: 'Secondary text',
-    rules: 'Not for placeholder text',
-    modes: { light: { value: '#111', description: 'x' }, dark: { value: '#eee' } },
-  };
-  assert.deepEqual(projectToken(token, 'structure'), { name: 'fgColor-muted', modes: { light: { value: '#111' }, dark: { value: '#eee' } } });
-  assert.equal(projectToken(token, 'description').description, 'Secondary text');
-  assert.equal('rules' in projectToken(token, 'description'), false);
+  const token = { name: 'fgColor-muted', value: '#111', description: 'Secondary text', usage: ['text'], rules: 'Not for placeholders' };
+  assert.deepEqual(projectToken(token, 'structure'), { name: 'fgColor-muted', value: '#111' });
+  assert.deepEqual(Object.keys(projectToken(token, 'description')), ['name', 'value', 'description']);
+  assert.deepEqual(projectToken(token, 'rules'), token);
 
   const component = {
     id: 'button',
     name: 'Button',
-    guidelines: 'One primary action per view',
-    examples: ['<Button />'],
+    description: 'Triggers an action',
     props: [{ name: 'variant', type: 'string', required: false, description: 'Visual style' }],
-    subcomponents: [{ name: 'Button.Icon', props: [{ name: 'icon', type: 'string', required: true, description: 'Icon' }] }],
+    subcomponents: [{ name: 'Button.Icon', description: 'Leading icon', props: [{ name: 'icon', type: 'string', required: true, description: 'Icon' }] }],
+    types: [{ name: 'ButtonSize', description: 'Sizes', props: [] }],
   };
   const structure = projectComponent(component, 'structure');
+  assert.equal('description' in structure, false);
   assert.deepEqual(structure.props, [{ name: 'variant', type: 'string', required: false }]);
-  assert.deepEqual(structure.subcomponents[0].props, [{ name: 'icon', type: 'string', required: true }]);
-  assert.equal('guidelines' in structure, false);
-  assert.equal('examples' in projectComponent(component, 'rules'), false);
-  assert.deepEqual(projectComponent(component, 'examples').examples, ['<Button />']);
+  assert.deepEqual(structure.subcomponents, [{ name: 'Button.Icon', props: [{ name: 'icon', type: 'string', required: true }] }]);
+  assert.deepEqual(structure.types, [{ name: 'ButtonSize', props: [] }]);
+  const described = projectComponent(component, 'description');
+  assert.equal(described.description, 'Triggers an action');
+  assert.equal(described.subcomponents[0].props[0].description, 'Icon');
+});
+
+test('the contract combines both data packages and reports their versions', () => {
+  const contract = loadContract();
+  assert.equal(contract.level, 'structure');
+  assert.match(contract.versions.tokens, /^\d+\.\d+\.\d+$/);
+  assert.match(contract.versions.componentSchemas, /^\d+\.\d+\.\d+$/);
+  assert.match(contract.versions.componentSchemaFormat, /^urn:lima-design:schema:component:/);
+  assert.deepEqual(Object.keys(contract.modifiers), ['theme', 'pointer']);
+
+  const muted = contract.tokens.find((t) => t.cssVar === '--lima-fgColor-muted');
+  assert.equal(muted.type, 'color');
+  assert.deepEqual(Object.keys(muted.contexts), ['light', 'dark']);
+  const button = contract.components.find((c) => c.id === 'button');
+  assert.equal(button.importPath, '@lima-design/react');
 });
 
 test('the structure view of the real contract carries no higher-level field', () => {
-  const { level, modes, tokens, components } = loadContract();
-  assert.equal(level, 'structure');
-  assert.deepEqual(modes, ['light', 'dark']);
-  const higher = ['description', 'usage', 'rules', 'guidelines', 'accessibility', 'examples'];
+  const { tokens, components } = loadContract({ level: 'structure' });
   const text = JSON.stringify({ tokens, components });
-  for (const field of higher) assert.equal(text.includes(`"${field}":`), false, `found "${field}" in the structure view`);
+  for (const field of ['description', 'usage', 'rules', 'guidelines', 'examples']) {
+    assert.equal(text.includes(`"${field}":`), false, `found "${field}" in the structure view`);
+  }
 });
 
-test('consumers can look tokens and components up by the names they type', () => {
-  const { tokens, components } = loadContract();
-  const muted = tokens.find((t) => t.cssVar === '--lima-fgColor-muted');
-  assert.equal(muted.type, 'color');
-  assert.deepEqual(Object.keys(muted.modes), ['light', 'dark']);
-  const button = components.find((c) => c.id === 'button');
-  assert.equal(button.importPath, '@lima-design/react');
-  assert.ok(button.props.some((p) => p.name === 'variant'));
-});
+test('registry validation catches drift between the registry and the data', () => {
+  const registry = clone(loadIntentLevels());
+  const governed = governedFields();
 
-test('validation catches the mistakes it exists for', () => {
-  const broken = (mutate) => {
-    const source = clone(loadSource());
-    mutate(source);
-    return validate(source).problems.join('\n');
-  };
-  const theme = (source) => source.tokenFiles.find((file) => file.category === 'theme').tokens;
+  const missing = clone(registry);
+  delete missing.fields.prop.deprecated;
+  assert.match(validate(missing, governed).problems.join('\n'), /every field the data can have is assigned a level: prop\.deprecated/);
 
-  assert.match(broken((s) => (theme(s)[0].mood = 'calm')), /field "mood" has no intent level/);
-  assert.match(broken((s) => (theme(s)[0].cssVar = '--fgColor-default')), /CSS names are/);
-  assert.match(broken((s) => delete theme(s)[0].modes.dark), /a value for every mode/);
-  assert.match(
-    broken((s) => {
-      const aliased = theme(s).find((t) => t.modes.light.alias);
-      aliased.modes.light.value = '#000001';
-    }),
-    /an alias has the same value as its target/
-  );
-  assert.match(
-    broken((s) => {
-      const aliased = theme(s).find((t) => t.modes.light.alias);
-      aliased.modes.light.alias = 'no-such-token';
-    }),
-    /points at an existing token/
-  );
-  assert.match(broken((s) => s.tokenFiles[1].tokens.push(clone(s.tokenFiles[1].tokens[0]))), /names are unique/);
+  const stale = clone(registry);
+  stale.fields.component.mood = 'rules';
+  assert.match(validate(stale, governed).problems.join('\n'), /does not exist: component\.mood/);
 
-  const component = (source, id) => source.componentFiles.find(({ component: c }) => c.id === id).component;
-  assert.match(broken((s) => component(s, 'button').props.push(clone(component(s, 'button').props[0]))), /duplicate prop/);
-  assert.match(broken((s) => (component(s, 'button').importPath = 'some-other-library')), /importPath/);
-  assert.match(broken((s) => (component(s, 'dialog_deprecated').importPath = '@lima-design/react')), /deprecated component is imported from/);
-  assert.match(broken((s) => (component(s, 'button').props[0].tooltip = 'hi')), /field "tooltip" has no intent level/);
+  const unknownLevel = clone(registry);
+  unknownLevel.fields.token.description = 'vibes';
+  assert.match(validate(unknownLevel, governed).problems.join('\n'), /token\.description -> "vibes"/);
+
+  // a field added to a data format without a level is caught, too
+  assert.match(validate(registry, { ...governed, prop: [...governed.prop, 'since'] }).problems.join('\n'), /prop\.since/);
 });
